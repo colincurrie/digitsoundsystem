@@ -1,0 +1,5 @@
+.idea
+.ruby-version
+.ruby-gemset
+.env
+log/

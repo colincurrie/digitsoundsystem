@@ -1,0 +1,93 @@
+$background: #000;
+$page-background: #fffcda;
+$title-background: #eee;
+$menu-background: #aaa;
+$menu-highlighted: #fff;
+
+$text: #000;
+$text-links: #822;
+$text-hover: #f00;
+$text-title: #822;
+
+$img-border: #fff;
+$header-color: #f00;
+$footer-color: #fff;
+
+$title-fonts: monospace;
+$body-fonts:  sans-serif;
+
+// the base of the page
+body {
+  background-image: image-url('black_mosaic.png');
+  font-family: $body-fonts;
+  /*** links ***/
+  a {
+    text-decoration: none;
+    color: $text-links;
+  }
+  a:hover   { color: $text-hover; }
+  a:visited { color: $text-links; }
+  a:active  { color: $text-links; }
+}
+
+#logo {
+  text-align: center;
+}
+
+#menu {
+  margin-left: auto;
+  margin-right: auto;
+  width: 980px;
+  text-decoration: none;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: inline;
+    padding: 5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-family: $body-fonts;
+    padding: .2em 1em;
+    color: $text-title;
+    background: image-url('cork.png');
+    opacity:0.8;
+    filter:alpha(opacity=80); /* For IE8 and earlier */
+  }
+  .selected {
+    opacity:1;
+    filter:alpha(opacity=100); /* For IE8 and earlier */
+  }
+  :hover {
+    color: $text-hover;
+  }
+}
+
+#page {
+  background-image: image-url('cork.png');
+  margin: 0 auto;
+  width: 1000px;
+  padding: 10px;
+  border-radius: 15px;
+  h1 {
+    font-size: 30px;
+  }
+  h1, h2, h3 {
+    font-family: $title-fonts;
+  }
+  img {
+    border: 10px solid $img-border;
+    box-shadow: 2px 5px 10px #444;
+  }
+}
+
+#footer {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  color: $footer-color;
+  font-size: 10px;
+}
+

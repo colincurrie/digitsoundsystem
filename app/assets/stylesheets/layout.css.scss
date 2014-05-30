@@ -10,6 +10,7 @@ $text-hover: #f00;
 $text-title: #822;
 
 $img-border: #fff;
+$vid-border: #efefde;
 $header-color: #f00;
 $footer-color: #fff;
 
@@ -34,7 +35,7 @@ body {
   text-align: center;
 }
 
-#menu {
+#menu, .first {
   margin-left: auto;
   margin-right: auto;
   width: 980px;
@@ -80,6 +81,10 @@ body {
   img {
     border: 10px solid $img-border;
     box-shadow: 2px 5px 10px #444;
+  }
+  iframe {
+    border: 10px solid $vid-border;
+    box-shadow: 0px 5px 25px #ccc;
   }
 }
 

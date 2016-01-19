@@ -1,0 +1,28 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, autofocus: true %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :surname %>
+  <%= f.text_field :surname %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, autocomplete: 'off' %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, autocomplete: 'off' %>
+
+  <%= f.label :mailing_list %>
+  <%= f.check_box :mailing_list %>
+
+  <%= f.submit 'Sign up' %>
+
+  <%= devise_error_messages! %>
+
+<% end %>
+

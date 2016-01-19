@@ -1,0 +1,5 @@
+<div class=comment">
+  <div class="user"><%= comment.user.try(:name) %>:</div>
+  <div class="actions"><%= link_to 'remove', [comment.story, comment], method: :delete, data: {confirm: 'Are you sure?'} %></div>
+  <div class="body"><%= comment.content %></div>
+</div>

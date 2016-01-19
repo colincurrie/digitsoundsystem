@@ -1,0 +1,47 @@
+// Place all the styles related to the articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.news {
+  list-style: none;
+  padding: 0;
+}
+
+.story {
+  font-family: sans-serif;
+  margin-bottom: 10px;
+}
+
+.story:hover {
+  background: #111;
+}
+
+.story .date {
+  width: 75px;
+  float: left;
+  font-size: 75%;
+}
+
+.actions {
+  float: right;
+  font-size: 75%;
+}
+
+.story .title, .comments .title {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 110%;
+}
+
+.story .body, .story .title {
+  margin-left: 75px;
+}
+
+.comments .title {
+  margin-left: 0;
+}
+
+.comment .user {
+  float: left;
+  color: #fff;
+}

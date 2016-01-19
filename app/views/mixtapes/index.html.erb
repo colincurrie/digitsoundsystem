@@ -1,0 +1,26 @@
+<h1>Mixtapes</h1>
+
+<p>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Add a new mixtape', new_mixtape_path %>
+  <% end %>
+</p>
+
+<ul class="mixtapes">
+  <% @mixtapes.each do |mixtape| %>
+    <li class="mix">
+      <% if current_user.try :admin? %>
+        <span class="actions">
+          <%= link_to 'Open', mixtape_path(mixtape) %>
+          <%= link_to 'Edit', edit_mixtape_path(mixtape) %>
+          <%= link_to 'Delete', mixtape, :confirm => 'Are you sure?', :method => :delete %>
+        </span>
+      <% end %>
+      <% if mixtape.html %>
+        <%=raw mixtape.html %>
+      <% else %>
+        <%= link_to mixtape.title, mixtape.url, target: '_blank' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,25 @@
+<h1>Gallery</h1>
+
+<% if current_user.try :admin? %>
+  <p><%= link_to 'Add a new photo', new_photo_path %></p>
+<% end %>
+
+<ul class="gallery">
+  <% @grid.each do |row| %>
+    <% row.each do |cell| %>
+      <% if cell && cell[:photo] %>
+        <li class="photo">
+          <%= image_tag cell[:photo].image(cell[:size]), alt: cell[:photo].description, title: cell[:photo].description %>
+          <% if current_user.try :admin? %>
+            <br/>
+            <span class="actions">
+              <%= link_to 'Open', photo_path(cell[:photo]) %>
+              <%= link_to 'Edit', edit_photo_path(cell[:photo]) %>
+              <%= link_to 'Delete', cell[:photo], :confirm => 'Are you sure?', :method => :delete %>
+            </span>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>

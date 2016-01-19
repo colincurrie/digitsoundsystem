@@ -1,0 +1,100 @@
+// the devise forms for logging in, signing up and editing your profile
+@import url(http://fonts.googleapis.com/css?family=Inconsolatas:400);
+
+.new_user, .edit_user {
+  max-width: 300px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.edit_story {
+  width: 100%;
+  margin: 0 auto;
+  textarea {
+    height: 15em;
+    resize: vertical;
+  }
+}
+
+input[type=text], input[type=email], input[type=password], textarea, input[type=checkbox] {
+  display: block;
+  width: 100%;
+  background: #000;
+  font-size: 110%;
+  color: #fff;
+  padding: 0;
+  margin: 0 auto;
+  border: 2px solid #ffa;
+}
+
+input[type=submit] {
+  float: none;
+  background: #f00;
+  border: 0;
+  padding: 10px;
+  width: 100%;
+  margin: 20px auto;
+  font-size: 150%;
+  color: #000;
+  cursor: pointer;
+}
+
+input.cancel {
+  font-size: 90%;
+  background: #800;
+  width: 300px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin: 10px 0 0 0;
+}
+
+.field {
+  margin: 10px auto;
+}
+
+.field_with_errors {
+  input, textarea {
+    border: 2px solid #f99;
+  }
+}
+
+.password_tip {
+  font-style: italic;
+  font-size: 90%;
+}
+
+.js {
+  #story_form, .new_comment {
+    display: none;
+  }
+}
+
+#story_form {
+  input, textarea {
+    width: 100%;
+    margin: 5px auto;
+    font-size: 100%;
+  }
+  textarea {
+    resize: none;
+    height: 5em;
+  }
+}
+
+#new_comment {
+  textarea {
+    width: 90%;
+    margin: 5px 0;
+    resize: vertical;
+    height: 2em;
+  }
+  input[type=submit] {
+    width: 9%;
+    margin: 0;
+    font-size: 100%;
+    float: right;
+  }
+}

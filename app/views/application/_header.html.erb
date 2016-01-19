@@ -1,0 +1,26 @@
+<header>
+  <div id="toolbar">
+    <div class="links">
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'News', news_path %>
+      <%= link_to 'DJs', djs_path %>
+      <%= link_to 'Gallery', gallery_path %>
+      <%= link_to 'Mixtapes', mixtapes_path %>
+      <%= link_to 'Calendar', calendar_path %>
+      <%= link_to 'Contact', contact_path %>
+    </div>
+    <div class="profile">
+      <% if user_signed_in? %>
+        <%= current_user.name %>
+        <%= link_to 'Profile', edit_user_registration_path %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path %>
+        <%= link_to 'Sign-up', new_user_registration_path %>
+    <% end %>
+    </div>
+  </div>
+  <div id="title">
+    <%= image_tag 'banner.png', :alt => 'Dig It Sound System' %>
+  </div>
+</header>

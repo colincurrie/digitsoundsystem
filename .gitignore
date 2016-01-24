@@ -18,3 +18,5 @@
 
 .idea
 /public/assets/images
+.byebug_history
+

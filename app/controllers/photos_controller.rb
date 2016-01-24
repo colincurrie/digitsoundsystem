@@ -4,26 +4,58 @@ class PhotosController < ApplicationController
 
   def index
     @title = 'Gallery'
-    @grid = []
-    row = 0
-    # TODO, limit this before we get too many pictures in the gallery
-    photos = Photo.order('created_at desc').to_a
-    until photos.empty?
-      @grid[row] ||= []
-      col = @grid[row].size
-      if cell_taken?(row, col)
-        puts 'cell: empty'
-        @grid[row] << nil
-      else
-        photo = photos.delete_at(0)
-        size = photo_size(photo, row, col)
-        cell = {photo: photo, size: size, rowspan: rowspan(size), colspan: colspan(size), row: row, col: col}
-        puts "cell: #{cell}"
-        @grid[row] << cell
-      end
+    # TODO: paginate
+    # TODO: refactor this or DRY it up a bit or something... it's ugly
 
-      row += 1 if col+1 >= GRID_WIDTH
+    limit = 35
+    group_sizes = reduce([4]*12, limit, 0)
+    offset = params.fetch('page', 0) * limit
+    ordered = Photo.order(created_at: :desc).limit(limit).offset(offset).sort_by { |p| -p.score }
+    queue = Queue.new
+    ordered.each { |photo| queue << photo }
+
+    @groups = []
+    group_sizes.each do |size|
+      begin
+        if queue.size < size
+          logger.debug 'skipping this one because there are not enough images'
+          next
+        end
+        case size
+          when 1
+            @groups << Array.new(size).map { [queue.pop, :large] }
+          when 2
+            @groups << Array.new(size).map { [queue.pop, :portrait] }
+          when 3
+            # needs to be 2 small then one landscape or one landscape then 2 small
+            if Random.rand(0..1) == 0
+              @groups << [[queue.pop, :landscape]] + Array.new(2).map { [queue.pop, :small] }
+            else
+              @groups << Array.new(2).map { [queue.pop, :small] } + [[queue.pop, :landscape]]
+            end
+          when 4
+            @groups << Array.new(size).map { [queue.pop, :small] }
+          else
+            logger.error 'invalid group size'
+        end
+      rescue => e
+        logger.error "ran out of images (#{size}, #{queue.size}): #{e}"
+      end
     end
+
+    @groups.shuffle!
+  end
+
+  def reduce(group_sizes, target, n)
+    sum = group_sizes.reduce(:+)
+    if sum > target
+      difference = sum - target
+      added = (n%3)+1
+      group_sizes.pop
+      group_sizes.push([ added, difference ].min)
+      group_sizes = reduce(group_sizes.sort, target, n+1)
+    end
+    group_sizes
   end
 
   def new
@@ -69,39 +101,4 @@ class PhotosController < ApplicationController
   def photo_params
     params.require(:photo).permit(:image, :description).merge user: current_user
   end
-
-  def cell_taken?( row, col )
-    (cell_size(row-1,col-1) == :medium) ||
-    (cell_size(row,col-1) == :medium) ||
-    (cell_size(row,col-1) == :landscape) ||
-    (cell_size(row-1,col) == :medium) ||
-    (cell_size(row-1,col) == :portrait)
-  end
-
-  def cell_size( row, col )
-    @grid[row][col][:size] rescue nil
-  end
-
-  def photo_size( photo, row, col )
-    if col >= GRID_WIDTH-1
-      [:small, :portrait].shuffle.first
-    else
-      [:small, :medium, :portrait, :landscape].shuffle.first
-    end
-  end
-
-  def rowspan( size )
-    case size
-      when :medium, :portrait then 2
-      else 1
-    end
-  end
-
-  def colspan( size )
-    case size
-      when :medium, :landscape then 2
-      else 1
-    end
-  end
-
 end

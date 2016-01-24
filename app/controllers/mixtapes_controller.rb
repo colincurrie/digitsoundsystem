@@ -50,7 +50,7 @@ class MixtapesController < ApplicationController
   private
 
   def mixtape_params
-    extended_params = { user: curent_user }
+    extended_params = { user: current_user }
     url = params[:mixtape][:url] rescue nil
     if MIXCLOUD_URL =~ url
       response = RestClient.get url.sub('www', 'api') + 'embed-html/?width=900&height=65&color=ff0000'

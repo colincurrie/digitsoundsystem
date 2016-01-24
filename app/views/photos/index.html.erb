@@ -4,22 +4,12 @@
   <p><%= link_to 'Add a new photo', new_photo_path %></p>
 <% end %>
 
-<ul class="gallery">
-  <% @grid.each do |row| %>
-    <% row.each do |cell| %>
-      <% if cell && cell[:photo] %>
-        <li class="photo">
-          <%= image_tag cell[:photo].image(cell[:size]), alt: cell[:photo].description, title: cell[:photo].description %>
-          <% if current_user.try :admin? %>
-            <br/>
-            <span class="actions">
-              <%= link_to 'Open', photo_path(cell[:photo]) %>
-              <%= link_to 'Edit', edit_photo_path(cell[:photo]) %>
-              <%= link_to 'Delete', cell[:photo], :confirm => 'Are you sure?', :method => :delete %>
-            </span>
-          <% end %>
-        </li>
+<div class="gallery">
+  <% @groups.each do |group| %>
+    <div class="group">
+      <% group.each do |photo, size| %>
+        <%= link_to image_tag(photo.image(size), alt: photo.description, title: photo.description, class: 'photo'), photo_path(photo) %>
       <% end %>
-    <% end %>
+    </div>
   <% end %>
-</ul>
+</div>

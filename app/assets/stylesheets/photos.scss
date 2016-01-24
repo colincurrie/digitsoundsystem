@@ -3,12 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .gallery {
-  list-style: none;
-  margin: auto;
   overflow: hidden;
+  margin: auto;
   padding: 0;
+
+  .group {
+    float: left;
+    width: 300px;
+    height: 300px;
+    margin: 0;
+      .photo {
+        float: left;
+      }
+  }
 }
 
-.photo {
-  float: left;
-}

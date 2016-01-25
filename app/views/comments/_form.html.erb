@@ -1,8 +1,10 @@
 <% if current_user %>
-  <%= link_to 'Add Comment', '#new_comment', class: 'new_comment' %>
+  <%= link_to 'Add A Comment', '#add_comment', class: 'add_comment', id: 'add_comment' %>
+<% else %>
+  <%= link_to 'Add A Comment', new_user_session_path %>
 <% end %>
 
-<%= form_for([@story, @story.comments.build]) do |f| %>
+<%= form_for([parent, parent.comments.build]) do |f| %>
+  <%= f.submit 'Add' %>
   <%= f.text_area :content, placeholder: 'Comment' %>
-  <%= f.submit %>
 <% end %>

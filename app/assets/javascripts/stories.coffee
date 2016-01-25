@@ -6,8 +6,11 @@
 document.documentElement.className = 'js'
 
 $(document).on 'page:change', ->
-  # show the form if there are errors
-  $("#story_form").show() unless $("#story_form .field_with_errors").length==0
+  # show the form if there are errors or this the edit page
+  $("#story_form").show() if $("#story_form .field_with_errors, #edit_story").length>0
+  # also hide the 'new story' link if this is the edit page
+  $(".new_story").hide() if $("#edit_story").length>0
+
   # hide all the comment forms
   for form in $(".new_comment")
     form.style.display = 'none'

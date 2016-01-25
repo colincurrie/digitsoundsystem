@@ -1,0 +1,12 @@
+<div class="story" id="story_<%= story.id %>">
+  <div class="date"><%= time_ago_in_words story.updated_at %> ago</div>
+  <% if current_user.try(:admin?) %>
+    <div class="actions">
+      <%= link_to 'Edit', edit_story_path(story) %>
+      <%= link_to 'Delete', story_path(story), method: :delete, data: {confirm: 'Are you sure?'} %>
+    </div>
+  <% end %>
+  <div class="title"><%= story.title %></div>
+  <div class="body"><%= story.content %></div>
+  <%= render 'comments/index', parent: story %>
+</div>

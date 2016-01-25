@@ -1,47 +1,7 @@
 <h1>News</h1>
-<% if current_user.try(:admin?) %>
-  <%= link_to 'Write a new story', '#new_story', class: 'new_story' %>
-<% end %>
-
-<%= form_for @story, html: {id: 'story_form', class: 'story_form'} do |f| %>
-  <%= f.text_field :title, placeholder: 'Title' %>
-  <%= f.text_area :content, placeholder: 'Content' %>
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>
 <div class="news">
   <% @stories.each do |story| %>
-    <div class="story" id="story_<%= story.id %>">
-      <div class="date"><%= time_ago_in_words story.updated_at %> ago</div>
-      <% if current_user.try(:admin?) %>
-        <div class="actions">
-          <%= link_to 'Edit', edit_story_path(story) %>
-          <%= link_to 'Delete', story_path(story), method: :delete, data: {confirm: 'Are you sure?'} %>
-        </div>
-      <% end %>
-      <div class="title"><%= story.title %></div>
-      <div class="body"><%= story.content %></div>
-      <% unless story.comments.empty? %>
-        <div class="comments">
-          <div class="title">Comments:</div>
-          <% story.comments.each do |comment| %>
-            <div class="comment">
-              <% if comment.user == current_user %>
-                <div class="actions"><%= link_to 'remove', [comment.story, comment], method: :delete, data: {confirm: 'Are you sure?'} %></div>
-              <% end %>
-              <div class="user"><%= comment.user.name %>:</div>
-              <div class="body"><%= comment.content %></div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-      <% if current_user %>
-        <%= link_to 'Add A Comment', '#add_comment', class: 'add_comment' %>
-      <% end %>
-
-      <%= form_for([story, story.comments.build]) do |f| %>
-        <%= f.submit 'Add' %>
-        <%= f.text_area :content, placeholder: 'Comment' %>
-      <% end %>
-    </div>
+    <%= render 'story', story: story %>
   <% end %>
 </div>

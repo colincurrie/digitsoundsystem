@@ -1,9 +1,17 @@
-<%= image_tag @photo.image %>
-<p><%= @photo.description %></p>
+<h2 class="description"><%= @photo.description.presence || "Photo #{@photo.id}" %></h2>
 
 <% if current_user.try :admin? %>
   <div class="actions">
-  <%= link_to 'Edit', edit_photo_path(@photo) %>
-  <%= link_to 'Back', photos_path %>
+    <%= link_to 'Edit', edit_photo_path(@photo) %>
+    <%= link_to 'Back', photos_path %>
   </div>
 <% end %>
+
+<div class="comment_link">
+  <%= link_to @photo.comments.empty? ? 'No Comments Yet' : "#{pluralize(@photo.comments.size, 'Comment')}", '#add_comment' %>
+</div>
+<div class="image">
+  <%= image_tag @photo.image %>
+</div>
+
+<%= render 'comments/index', parent: @photo %>

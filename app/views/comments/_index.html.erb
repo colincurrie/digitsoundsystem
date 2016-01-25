@@ -1,0 +1,15 @@
+<% unless parent.comments.empty? %>
+  <div class="comments">
+    <div class="title">Comments:</div>
+    <% parent.comments.each do |comment| %>
+      <div class="comment">
+        <% if comment.user == current_user %>
+          <div class="actions"><%= link_to 'remove', [parent, comment], method: :delete, data: {confirm: 'Are you sure?'} %></div>
+        <% end %>
+        <div class="user"><%= comment.user.name %>:</div>
+        <div class="body"><%= comment.content %></div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<%= render 'comments/form', parent: parent %>

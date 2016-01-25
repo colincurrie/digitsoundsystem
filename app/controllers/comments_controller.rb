@@ -1,16 +1,16 @@
 class CommentsController < ApplicationController
 
   def create
-    @story = Story.find(params[:story_id])
-    @comment = @story.comments.create(comment_params)
-    redirect_to stories_path
+    parent, path = parent_and_path
+    @comment = parent.comments.create(comment_params) if parent
+    redirect_to path
   end
 
   def destroy
-    @story = Story.find(params[:story_id])
-    @comment = @story.comments.find(params[:id])
+    parent, path = parent_and_path
+    @comment = parent.comments.find(params[:id])
     @comment.destroy
-    redirect_to stories_path
+    redirect_to path
   end
 
   private
@@ -19,4 +19,20 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content).merge user: current_user
   end
 
+  def parent_and_path
+    if params[:story_id]
+      parent = Story.find(params[:story_id])
+      path = stories_path
+    elsif params[:photo_id]
+      parent = Photo.find(params[:photo_id])
+      path = photo_path parent
+    elsif params[:mixtape_id]
+      parent = Mixtape.find(params[:mixtape_id])
+      path = mixtapes_path
+    else
+      parent = nil
+      path = root_path
+    end
+    [parent, path]
+  end
 end

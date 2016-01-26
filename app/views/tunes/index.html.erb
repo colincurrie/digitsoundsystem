@@ -1,0 +1,16 @@
+<h1>Tunes</h1>
+
+<% if current_user.try(:admin?) %>
+  <p>
+  <%= link_to 'Add a new tune', new_tune_path %>
+  </p>
+<% end %>
+
+<ul class="tunes">
+  <% @tunes.each do |tune| %>
+    <li class="tune">
+      <h2><%= link_to tune.title, tune_path(tune) %></h2>
+      <%= render 'tune', tune: tune %>
+    </li>
+  <% end %>
+</ul>

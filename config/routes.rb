@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :mixtapes do
     resources :comments
   end
+  resources :tunes do
+    resources :comments
+  end
 
   get '/calendar', to: 'calendar#show'
   get '/contact', to: 'contact#show'

@@ -1,0 +1,8 @@
+<h1><%= link_to @tune.title, @tune.url, target: '_blank' %></h1>
+<% if current_user.try :admin? %>
+  <div class="actions">
+    <%= link_to 'Edit', edit_tune_path(@tune) %>
+    <%= link_to 'Back', tunes_path %>
+  </div>
+<% end %>
+<%= render 'tune', tune: @tune %>

@@ -1,0 +1,9 @@
+<% if current_user.try :admin? %>
+  <span class="actions">
+    <%= link_to 'Open', tune_path(tune) %>
+    <%= link_to 'Edit', edit_tune_path(tune) %>
+    <%= link_to 'Delete', tune, :confirm => 'Are you sure?', :method => :delete %>
+  </span>
+<% end %>
+<p><%= tune.artist %> - <%= tune.title %></p>
+<%= render 'comments/index', parent: tune %>

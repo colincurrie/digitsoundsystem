@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122082939) do
+ActiveRecord::Schema.define(version: 20160126215115) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160122082939) do
     t.integer  "mixtape_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "tune_id"
   end
 
   add_index "comments", ["mixtape_id", "created_at"], name: "index_comments_on_mixtape_id_and_created_at"
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160122082939) do
   add_index "comments", ["photo_id"], name: "index_comments_on_photo_id"
   add_index "comments", ["story_id", "created_at"], name: "index_comments_on_story_id_and_created_at"
   add_index "comments", ["story_id"], name: "index_comments_on_story_id"
+  add_index "comments", ["tune_id"], name: "index_comments_on_tune_id"
   add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
@@ -66,6 +68,21 @@ ActiveRecord::Schema.define(version: 20160122082939) do
 
   add_index "stories", ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
   add_index "stories", ["user_id"], name: "index_stories_on_user_id"
+
+  create_table "tunes", force: :cascade do |t|
+    t.string   "url"
+    t.string   "artist"
+    t.string   "title"
+    t.string   "html"
+    t.integer  "score",      default: 0
+    t.datetime "order"
+    t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "tunes", ["order"], name: "index_tunes_on_order"
+  add_index "tunes", ["user_id"], name: "index_tunes_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

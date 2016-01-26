@@ -1,0 +1,23 @@
+<%= form_for @tune do |f| %>
+  <%= f.label :url %><br>
+  <%= f.text_field :url %>
+
+  <%= f.label :artist %><br>
+  <%= f.text_field :artist %>
+
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
+
+  <%= f.submit %>
+
+  <% if @tune.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @tune.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% end %>

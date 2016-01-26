@@ -1,5 +1,5 @@
 <% if current_user %>
-  <%= link_to 'Add A Comment', '#add_comment', class: 'add_comment', id: 'add_comment' %>
+  <%= link_to 'Add A Comment', '#add_comment', class: 'add_comment', id: 'comments' %>
 <% else %>
   <%= link_to 'Add A Comment', new_user_session_path %>
 <% end %>

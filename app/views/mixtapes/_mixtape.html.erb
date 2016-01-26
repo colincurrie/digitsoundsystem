@@ -1,0 +1,13 @@
+<% if current_user.try :admin? %>
+  <span class="actions">
+          <%= link_to 'Open', mixtape_path(mixtape) %>
+    <%= link_to 'Edit', edit_mixtape_path(mixtape) %>
+    <%= link_to 'Delete', mixtape, :confirm => 'Are you sure?', :method => :delete %>
+        </span>
+<% end %>
+<% if mixtape.html %>
+  <%= raw mixtape.html %>
+<% else %>
+  <%= mixtape.description %>
+<% end %>
+<%= render 'comments/index', parent: mixtape %>

@@ -8,7 +8,7 @@
 <% end %>
 
 <div class="comment_link">
-  <%= link_to @photo.comments.empty? ? 'No Comments Yet' : "#{pluralize(@photo.comments.size, 'Comment')}", '#add_comment' %>
+  <%= link_to @photo.comments.empty? ? 'No Comments Yet' : "#{pluralize(@photo.comments.size, 'Comment')}", '#comments' %>
 </div>
 <div class="image">
   <%= image_tag @photo.image %>

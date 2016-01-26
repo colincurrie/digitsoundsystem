@@ -1,6 +1,4 @@
-// Place all the styles related to the articles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'vars';
 
 .news {
   list-style: none;
@@ -8,12 +6,12 @@
 }
 
 .story {
-  font-family: sans-serif;
+  font-family: $main-font;
   margin-bottom: 10px;
 }
 
 .story:hover {
-  background: #111;
+  background: $secondary-background;
 }
 
 .story .date {
@@ -43,5 +41,5 @@
 
 .comment .user {
   float: left;
-  color: #fff;
+  color: $secondary-text;
 }

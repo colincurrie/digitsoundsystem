@@ -14,11 +14,13 @@
  *= require_self
  */
 
+@import 'vars';
+
 body {
   margin: 0;
-  background-color: #000;
-  color: #ffa;
-  font-family: Helvetica, Arial, sans-serif;
+  background-color: $secondary-background;
+  color: $primary-text;
+  font-family: $main-font;
 }
 
 header, footer {
@@ -52,12 +54,12 @@ header #title {
 
 footer {
   text-align: right;
-  margin: 5px;
+  margin: 0;
   font-size: 90%;
 }
 
 .background {
-  background-color: #222;
+  background-color: $primary-background;
   padding: 20px;
 }
 
@@ -71,11 +73,11 @@ h1 {
 }
 
 h1, h2 {
-  color: #ff0;
+  color: $secondary-color;
 }
 
 a {
-  color: #f00;
+  color: $primary-color;
   text-decoration: none;
 }
 

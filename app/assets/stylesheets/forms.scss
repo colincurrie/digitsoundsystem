@@ -1,5 +1,5 @@
-// the devise forms for logging in, signing up and editing your profile
-@import url(http://fonts.googleapis.com/css?family=Inconsolatas:400);
+@import 'vars';
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
 
 .new_user, .edit_user {
   max-width: 300px;
@@ -18,25 +18,31 @@
 
 input[type=text], input[type=email], input[type=password], textarea, input[type=checkbox] {
   display: block;
+  alignment: left;
   width: 100%;
-  background: #000;
+  background: $secondary-background;
+  font-family: $code-font;
   font-size: 110%;
-  color: #fff;
+  color: $secondary-text;
   padding: 0;
   margin: 0 auto;
-  border: 2px solid #ffa;
+  border: 2px solid $primary-text;
 }
 
 input[type=submit] {
   float: none;
-  background: #f00;
+  background: $primary-color;
   border: 0;
   padding: 10px;
   width: 100%;
   margin: 20px auto;
   font-size: 150%;
-  color: #000;
+  color: $secondary-background;
   cursor: pointer;
+}
+
+input[type=submit]:hover {
+  color: $primary-text;
 }
 
 input.cancel {

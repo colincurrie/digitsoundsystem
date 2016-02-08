@@ -2,18 +2,42 @@
 
 .tunes {
   list-style: none;
-  margin: auto;
-  overflow: hidden;
   padding: 0;
 
   li:hover {
     background: $secondary-background;
   }
-  .mix {
-    margin: 0 auto 30px;
+  .tune {
+    min-height: 165px; // min youtube size
+    .clip {
+      min-width: 310px;
+      min-height: 160px;
+      //border: 1px solid #fff;
+      float: right;
+    }
+    .position {
+      width: 50px;
+      height: 50px;
+      padding: 50px;
+      margin: 5px;
+      background: $primary-color;
+      color: $primary-background;
+      float: left;
+      font: 4em $code-font;
+      font-weight: bolder;
+      vertical-align: middle;
+      text-align: center;
+    }
+    .artist, .title {
+      font-size: 200%;
+      color: $secondary-color;
+      font-weight: bold;
+    }
+    .user {
+      color: $secondary-text;
+    }
+    @for $i from 1 through 10 {
+      #position_#{$i} { background-image: url("position_#{$i}.png"); }
+    }
   }
-}
-
-.actions {
-  float: right;
 }

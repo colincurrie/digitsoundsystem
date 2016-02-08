@@ -1,2 +1,4 @@
-<h1>Edit <%= link_to "#{tune.artist} - #{tune.title}", tune.url, target: '_blank' %></h1>
-<%= render 'form' %>
+<h1>Edit A Tune</h1>
+<h2><%= link_to "#{@tune.artist} - #{@tune.title}", @tune.url, target: '_blank' %></h2>
+<%= render 'form', tune: @tune %>
+

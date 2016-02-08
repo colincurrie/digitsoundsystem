@@ -1,8 +1,13 @@
-<h1><%= link_to @tune.title, @tune.url, target: '_blank' %></h1>
+<%= link_to 'Back to the List', tunes_path %>
+<h1 class="title"><%= @tune.title %></h1>
+<h1 class="artist"><%= @tune.artist %></h1>
+<p class="info">Added by
+  <%= content_tag :span, real_user(@tune.user), class: 'user' %>
+  <%= time_ago_in_words(@tune.created_at) %> ago.
+</p>
 <% if current_user.try :admin? %>
-  <div class="actions">
-    <%= link_to 'Edit', edit_tune_path(@tune) %>
-    <%= link_to 'Back', tunes_path %>
-  </div>
+  <%= link_to 'Edit', edit_tune_path(@tune) %>
+  <%= link_to 'Delete', @tune, confirm: 'Are you sure?', method: :delete %>
 <% end %>
-<%= render 'tune', tune: @tune %>
+<div class="clip"><%= raw @tune.html %></div>
+<%= render 'comments/index', parent: @tune %>

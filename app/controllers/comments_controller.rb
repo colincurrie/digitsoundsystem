@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       path = mixtapes_path
     elsif params[:tune_id]
       parent = Tune.find(params[:tune_id])
-      path = tunes_path
+      path = tune_path(parent)
     else
       parent = nil
       path = root_path

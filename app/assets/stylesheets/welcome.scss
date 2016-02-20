@@ -1,3 +1,18 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'vars';
+
+ul.welcome {
+  list-style-type: none;
+  font-size: 48pt;
+  overflow: auto;
+  a {
+    font-size: 48pt;
+  }
+  .info {
+    vertical-align: middle;
+    font-size: $normal-font;
+  }
+  li {
+    float: left;
+    padding: 5px;
+  }
+}

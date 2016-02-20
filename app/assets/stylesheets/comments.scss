@@ -1,0 +1,12 @@
+@import 'vars';
+
+.comments {
+  .title {
+    font-weight: bold;
+  }
+  .comment {
+    .user {
+      color: $secondary-text;
+    }
+  }
+}

@@ -1,7 +1,8 @@
 <h1>News</h1>
 <%= render 'form' %>
-<div class="news">
+<ul class="news">
   <% @stories.each do |story| %>
-    <%= render 'story', story: story %>
+    <li><%= render 'story', story: story %></li>
   <% end %>
-</div>
+</ul>
+<p class="pagination">Back | 1-10 of <%= @stories.count %> | <a>Next</a></p>

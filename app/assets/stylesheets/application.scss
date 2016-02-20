@@ -23,39 +23,36 @@ body {
   font-family: $main-font;
 }
 
-header, footer {
-  background-color: #000;
-}
+header {
+  ul#navigation {
+    background: linear-gradient(rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      float: left;
+      display: inline;
+      margin: 5px;
+    }
+    ul#profile {
+      padding: 0;
+      float: right;
+    }
+  }
 
-header #toolbar {
-  width: 100%;
-  margin: 0;
-  padding: 5px 0;
-  font-size: 90%;
-  position: fixed;
-  background-color: #000;
-}
-
-header .links {
-  text-align: left;
-  float: left;
-}
-
-header .profile {
-  float: right;
-}
-
-header #title {
-  width: 100%;
-  margin: 0 auto;
-  padding: 30px 0 0 0;
-  text-align: center;
+  #title {
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 0 0 0;
+    text-align: center;
+  }
 }
 
 footer {
   text-align: right;
-  margin: 0;
-  font-size: 90%;
+  margin: 0 5px;
 }
 
 .background {
@@ -69,14 +66,22 @@ footer {
 }
 
 h1 {
-  font-size: 200%;
-}
-
-h1, h2 {
+  font-size: $title-font;
   color: $secondary-color;
 }
 
+h2 {
+  font-size: $large-font;
+  color: $secondary-color;
+}
+
+p {
+  font-size: $normal-font;
+  color: $primary-text
+}
+
 a {
+  font-size: $normal-font;
   color: $primary-color;
   text-decoration: none;
 }

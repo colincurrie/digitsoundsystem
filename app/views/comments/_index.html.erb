@@ -1,5 +1,5 @@
-<% unless parent.comments.empty? %>
-  <div class="comments">
+<div class="comments">
+  <% unless parent.comments.empty? %>
     <div class="title">Comments:</div>
     <% parent.comments.each do |comment| %>
       <div class="comment">
@@ -10,6 +10,6 @@
         <div class="body"><%= comment.content %></div>
       </div>
     <% end %>
-  </div>
-<% end %>
-<%= render 'comments/form', parent: parent %>
+  <% end %>
+  <%= render 'comments/form', parent: parent %>
+</div>

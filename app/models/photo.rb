@@ -3,8 +3,8 @@ class Photo < ActiveRecord::Base
   has_many :comments
 
   has_attached_file :image,
-                url: '/assets/images/:id/:style/:basename.:extension',
-                path: ':rails_root/public/assets/images/:id/:style/:basename.:extension',
+                url: '/gallery/:id/:style/:basename.:extension',
+                path: ':rails_root/public/gallery/:id/:style/:basename.:extension',
                 styles: {
                   small: '150x150#',
                   landscape: '300x150#',

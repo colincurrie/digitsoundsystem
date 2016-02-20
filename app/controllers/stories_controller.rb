@@ -3,8 +3,7 @@ class StoriesController < ApplicationController
   def index
     @title = 'News'
     @story ||= Story.new
-    @stories = Story.order('updated_at desc')
-    logger.debug "Story is #{@story}: #{params}"
+    @stories = Story.order('updated_at desc').limit(10)
   end
 
   def new

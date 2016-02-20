@@ -1,10 +1,11 @@
-<% if current_user %>
-  <%= link_to 'Add A Comment', '#add_comment', class: 'add_comment', id: 'comments' %>
-<% else %>
-  <%= link_to 'Add A Comment', new_user_session_path %>
-<% end %>
-
-<%= form_for([parent, parent.comments.build]) do |f| %>
-  <%= f.submit 'Add' %>
-  <%= f.text_area :content, placeholder: 'Comment' %>
-<% end %>
+<div class="comment_form">
+  <% if current_user %>
+    <%= link_to 'Add A Comment', '#add_comment', class: 'add_comment', id: 'comments' %>
+    <%= form_for([parent, parent.comments.build]) do |f| %>
+      <%= f.submit 'Add' %>
+      <%= f.text_area :content, placeholder: 'Comment' %>
+    <% end %>
+  <% else %>
+    <%= link_to 'Add A Comment', new_user_session_path %>
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 <%= link_to 'Back to the List', tunes_path %>
-<h1 class="title"><%= @tune.title %></h1>
-<h1 class="artist"><%= @tune.artist %></h1>
+<h2 class="title"><%= @tune.title %></h2>
+<h2 class="artist">by <%= @tune.artist %></h2>
 <p class="info">Added by
   <%= content_tag :span, real_user(@tune.user), class: 'user' %>
   <%= time_ago_in_words(@tune.created_at) %> ago.

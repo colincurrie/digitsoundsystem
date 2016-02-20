@@ -3,43 +3,49 @@
 .news {
   list-style: none;
   padding: 0;
+
+  .story {
+    font-family: $main-font;
+    font-size: $normal-font;
+    margin-bottom: 10px;
+
+    .date {
+      width: 75px;
+      float: left;
+      font-size: $small-font;
+    }
+
+    .title {
+      margin: 10px 0 0 75px;
+      font-weight: bold;
+      font-size: $large-font;
+    }
+
+    .body {
+      margin-left: 75px;
+    }
+  }
+
+  .story:hover {
+    background: $secondary-background;
+  }
+
+  .comment_form {
+    margin: 0 0 0 75px;
+  }
+
+  .comments {
+    .title {
+      margin-left: 0;
+    }
+
+    .user {
+      float: left;
+      color: $secondary-text;
+    }
+  }
 }
 
-.story {
-  font-family: $main-font;
-  margin-bottom: 10px;
-}
-
-.story:hover {
-  background: $secondary-background;
-}
-
-.story .date {
-  width: 75px;
-  float: left;
-  font-size: 75%;
-}
-
-.actions {
-  float: right;
-  font-size: 75%;
-}
-
-.story .title, .comments .title {
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 110%;
-}
-
-.story .body, .story .title {
-  margin-left: 75px;
-}
-
-.comments .title {
-  margin-left: 0;
-}
-
-.comment .user {
-  float: left;
-  color: $secondary-text;
+.pagination {
+  text-align: right;
 }

@@ -1,9 +1,8 @@
-<% if current_user.try(:admin?) %>
+<% if current_user && current_user.admin? %>
   <%= link_to 'Write a new story', '#new_story', class: 'new_story' %>
-<% end %>
-
-<%= form_for @story, html: {id: 'story_form', class: 'story_form'} do |f| %>
-  <%= f.text_field :title, placeholder: 'Title' %>
-  <%= f.text_area :content, placeholder: 'Content' %>
-  <%= f.submit %>
+  <%= form_for @story, html: {id: 'story_form', class: 'story_form'} do |f| %>
+    <%= f.text_field :title, placeholder: 'Title' %>
+    <%= f.text_area :content, placeholder: 'Content' %>
+    <%= f.submit %>
+  <% end %>
 <% end %>

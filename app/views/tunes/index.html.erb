@@ -12,7 +12,7 @@
       <div class="position" id="position_<%= pos+1 %>"></div>
       <div class="clip"><%= raw tune.html %></div>
       <div class="title"><%= tune.title %></div>
-      <div class="artist"><%= tune.artist %></div>
+      <div class="artist">by <%= tune.artist %></div>
       <div class="info">Added by
         <%= content_tag :span, real_user(tune.user), class: 'user' %>
         <%= time_ago_in_words(tune.created_at) %> ago.

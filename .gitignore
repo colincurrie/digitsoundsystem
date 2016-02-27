@@ -17,11 +17,8 @@
 /tmp
 
 .idea
-/public/assets/images
-/public/assets/*.gz
-/public/assets/*.js
-/public/assets/*.css
-/public/assets/*.png
-/public/assets/.sprockets-manifest*.json
+/public/gallery
+/public/assets
+#/public/assets/.sprockets-manifest*.json
 /.byebug_history
 

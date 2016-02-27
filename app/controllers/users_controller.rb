@@ -12,7 +12,7 @@ class UsersController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.for(:account_update) << [:admin, :name, :surname, :mailing_list]
+    devise_parameter_sanitizer.for(:account_update) << [:admin, :name, :surname, :mailing_list, :bio]
   end
 
 end

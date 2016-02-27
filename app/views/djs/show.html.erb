@@ -1,9 +1,13 @@
 <h1>The Dig It DJs</h1>
 
-<p>Ladies and lowlifes, I present to you... the Dig It DJs:</p>
-<ul>
-  <li>Dan Carrier</li>
-  <li>Matt Gross</li>
-  <li>Colin Currie</li>
-  <li>Carolyn Boyle</li>
+<ul class="djs">
+  <% @djs.each do |dj| %>
+    <li class="dj">
+      <h2 class="title"><%= dj.name %></h2>
+      <table><tr>
+        <td class="profile_pic"><%= image_tag "profile_#{dj.id}.jpg", class: 'profile_pic', alt: "#{dj.name}", title: "#{dj.name}" %></td>
+        <td class="bio"><%= markdown(dj.bio) %></td>
+      </tr></table>
+    </li>
+  <% end %>
 </ul>

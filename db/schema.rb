@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126215115) do
+ActiveRecord::Schema.define(version: 20160227115201) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160126215115) do
     t.boolean  "mailing_list",           default: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.text     "bio",                    default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

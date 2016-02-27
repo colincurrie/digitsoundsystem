@@ -9,7 +9,7 @@
 <ul class="mixtapes">
   <% @mixtapes.each do |mixtape| %>
     <li class="mix">
-      <h2><%= link_to mixtape.title, mixtape_path(mixtape) %></h2>
+      <h2><%= mixtape.title %></h2>
       <%= render 'mixtape', mixtape: mixtape %>
     </li>
   <% end %>

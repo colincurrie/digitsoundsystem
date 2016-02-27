@@ -13,16 +13,22 @@
       width: 75px;
       float: left;
       font-size: $small-font;
+      color: $secondary-text;
     }
 
     .title {
       margin: 10px 0 0 75px;
       font-weight: bold;
       font-size: $large-font;
+      color: $secondary-color;
     }
 
     .body {
       margin-left: 75px;
+      h1, h2, h3 {
+        font-size: $normal-font;
+        font-weight: bold;
+      }
     }
   }
 

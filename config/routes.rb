@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  # A single non-persistent contact for the form
+  resource :contact, only: [:show, :create], controller: 'contact'
+
   get '/calendar', to: 'calendar#show'
   get '/contact', to: 'contact#show'
   get '/djs', to: 'djs#show'

@@ -7,3 +7,34 @@
   <%= link_to 'YouTube', 'https://www.youtube.com/channel/UC7COpmLjdE2DqItWdm8qk5Q' %> or
   <%= link_to 'Instagram', 'https://www.instagram.com/digitsoundsystem/' %>.
 </p>
+
+<h2>Request a Booking</h2>
+
+<%= form_for @contact, url: contact_path do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+
+  <%= f.label :venue %>
+  <%= f.text_field :venue %>
+
+  <%= f.label :details %>
+  <%= f.text_area :details %>
+
+  <% if @contact.errors.any? %>
+    <ul>
+      <% @contact.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.submit 'Request' %>
+
+<% end %>

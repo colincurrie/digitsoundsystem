@@ -4,3 +4,23 @@ form.new_contact {
   width: 300px;
   margin: 0 auto;
 }
+
+.contact-links {
+  text-align: center;
+}
+
+a.social {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+}
+
+$social: email facebook twitter youtube instagram soundcloud mixcloud;
+@each $icon in $social{
+  a.#{$icon}-button {
+    background-image: url("#{$icon}.png");
+  }
+  a.#{$icon}-button:hover {
+    background-image: url("#{$icon}_hover.png");
+  }
+}

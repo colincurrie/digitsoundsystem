@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :tunes do
     resources :comments
   end
+  resources :events do
+    get :get_events, on: :collection
+  end
 
   # A single non-persistent contact for the form
   resource :contact, only: [:show, :create], controller: 'contact'

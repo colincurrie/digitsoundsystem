@@ -25,6 +25,7 @@ body {
 
 header {
   ul#navigation {
+    z-index: 50000;
     background: linear-gradient(rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
     position: fixed;
     width: 100%;

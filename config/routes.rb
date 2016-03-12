@@ -16,14 +16,12 @@ Rails.application.routes.draw do
   resources :tunes do
     resources :comments
   end
-  resources :events do
-    get :get_events, on: :collection
-  end
+  resources :events
 
   # A single non-persistent contact for the form
   resource :contact, only: [:show, :create], controller: 'contact'
 
-  get '/calendar', to: 'calendar#show'
+  get '/calendar', to: 'events#index'
   get '/contact', to: 'contact#show'
   get '/djs', to: 'djs#show'
 

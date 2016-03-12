@@ -22,3 +22,4 @@
 #/public/assets/.sprockets-manifest*.json
 /.byebug_history
 /vendor/fullcalendar-2.6.1/
+/vendor/datetimepicker-master/

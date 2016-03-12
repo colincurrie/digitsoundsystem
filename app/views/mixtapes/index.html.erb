@@ -10,6 +10,12 @@
   <% @mixtapes.each do |mixtape| %>
     <li class="mix">
       <h2><%= mixtape.title %></h2>
+      <% if current_user.try :admin? %>
+        <span class="actions">
+          <%= link_to 'Open', mixtape_path(mixtape) %>
+          <%= link_to 'Edit', edit_mixtape_path(mixtape) %>
+        </span>
+      <% end %>
       <%= render 'mixtape', mixtape: mixtape %>
     </li>
   <% end %>

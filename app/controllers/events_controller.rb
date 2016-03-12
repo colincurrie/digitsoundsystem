@@ -1,32 +1,44 @@
 class EventsController < ApplicationController
+
   def new
     @event = Event.new
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def create
-    @event = Event.new(event_params)
-
+    @event = Event.create(event_params)
     if @event.save
-      render json: {msg: 'your event was saved.'}
+      redirect_to events_path
     else
-      render json: {msg: 'error: something go wrong.'}, status: 500
+      render 'new'
     end
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   def index
-    @events = Event.between(params['start'], params['end']) if (params['start'] && params['end'])
-
+    # TODO: paginate
+    @events = Event.all
     respond_to do |format|
       format.html
-      format.json { render :json => @events }
+      format.json { render json: @events }
     end
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to calendar_path
+  end
+
+  private
+
   def event_params
-    params.permit(:title).merge start_at: params[:start].to_time, end_at: params[:end].to_time, user_name: params[:user_name]
+    params.require(:event).permit(:title, :venue, :description, :start_at, :end_at).merge(user: current_user)
   end
 end

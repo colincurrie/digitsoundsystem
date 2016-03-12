@@ -1,0 +1,43 @@
+@import 'vars';
+@import 'jquery.datetimepicker';
+@import 'fullcalendar.css';
+
+.fc td, .fc th {
+  border: solid 2px $primary-background;
+  background: $secondary-background;
+}
+
+.fc th, .fc-unthemed .fc-today {
+  color: $secondary-color;
+}
+
+.fc-unthemed .fc-today {
+  background: $primary-background;
+}
+
+.fc-button {
+  background: $primary-color;
+  color: $primary-text;
+}
+
+.fc-state-default.fc-corner-left, .fc-state-default.fc-corner-right {
+  border-radius: 0;
+}
+
+.fc-button:hover {
+  color: $secondary-color;
+}
+
+.fc-time, .fc-title {
+  color: $secondary-background;
+}
+
+.fc-event {
+  background: $primary-text;
+  border: none;
+}
+
+form {
+  width: 300px;
+  margin: 0 auto;
+}

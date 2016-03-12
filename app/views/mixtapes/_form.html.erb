@@ -1,29 +1,16 @@
-<%= form_for @mixtape do |f| %>
-  <% if @mixtape.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@mixtape.errors.count, 'error') %> prevented this mixtape from being <%= @action %>ed:
-      </h2>
-      <ul>
-        <% @mixtape.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <p>
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
-  </p>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<%= form_for mixtape do |f| %>
+
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= render 'shared/errors', object: mixtape %>
+
+  <%= f.submit %>
+
 <% end %>

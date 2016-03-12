@@ -13,12 +13,10 @@ class TunesController < ApplicationController
 
   def new
     @tune = Tune.new
-    @action = 'add'
   end
 
   def edit
     @tune = Tune.find(params[:id])
-    @action = 'edit'
   end
 
   def show

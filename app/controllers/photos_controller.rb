@@ -7,14 +7,14 @@ class PhotosController < ApplicationController
     # TODO: paginate
     # TODO: refactor this or DRY it up a bit or something... it's ugly
 
-    limit = 35
-    group_sizes = reduce([4]*12, limit, 0)
-    offset = params.fetch('page', 0) * limit
-    ordered = Photo.order(created_at: :desc).limit(limit).offset(offset).sort_by { |p| -p.score }
+    page = params.fetch('page', 1)
+    per_page = params.fetch('per_page', 35)
+    @photos = Photo.order('created_at DESC, score DESC').page(page).per_page(per_page)
     queue = Queue.new
-    ordered.each { |photo| queue << photo }
+    @photos.each { |photo| queue << photo }
 
     @groups = []
+    group_sizes = reduce([4]*12, per_page, 0)
     group_sizes.each do |size|
       begin
         if queue.size < size

@@ -1,0 +1,27 @@
+@import 'vars';
+
+.pagination {
+  text-align: right;
+  padding: 10px;
+  margin: 20px 0;
+  font-size: $large-font;
+  a {
+    color: $primary-text;
+  }
+  .previous_page, .next_page, a, em {
+    background: $primary-color;
+    padding: 5px;
+    color: $secondary-background;
+  }
+  .disabled, .disabled:hover {
+    background: darkred;
+    color: $primary-background;
+  }
+  a:hover, .next-page:hover {
+    text-decoration: none;
+    color: $primary-text;
+  }
+  em {
+    text-decoration: none;
+  }
+}

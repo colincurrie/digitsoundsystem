@@ -3,7 +3,9 @@ class StoriesController < ApplicationController
   def index
     @title = 'News'
     @story ||= Story.new
-    @stories = Story.order('updated_at desc').limit(10)
+    page = params.fetch('page', 1)
+    per_page = params.fetch('per_page', 10)
+    @stories = Story.order('updated_at DESC').page(page).per_page(per_page)
   end
 
   def new

@@ -1,3 +1,6 @@
+@import 'vars';
+@import 'pagination';
+
 .gallery {
   overflow: hidden;
   margin: auto;
@@ -13,4 +16,5 @@
       }
   }
 }
+
 

@@ -45,7 +45,7 @@ gem 'rest-client'
 gem 'redcarpet'
 
 # Font Awsome for icons
-gem 'font-awesome-sass'
+# gem 'font-awesome-sass'
 
 # FullCalendar event planner
 gem 'fullcalendar-rails'

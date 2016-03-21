@@ -36,19 +36,20 @@
   .story:hover {
     background: $secondary-background;
   }
+}
 
-  .comment_form {
-    margin: 0 0 0 75px;
+.comment_form {
+  margin: 0 0 0 75px;
+}
+
+.comments {
+  .title {
+    margin-left: 0;
   }
 
-  .comments {
-    .title {
-      margin-left: 0;
-    }
-
-    .user {
-      float: left;
-      color: $secondary-text;
-    }
+  .user {
+    float: left;
+    color: $secondary-text;
   }
 }
+

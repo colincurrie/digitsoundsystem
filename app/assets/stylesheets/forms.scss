@@ -97,9 +97,12 @@ label {
     resize: vertical;
     height: 2em;
   }
+  textarea.story-comment {
+    //float: left;
+  }
   input[type=submit] {
-    width: 9%;
-    margin: 0;
+    width: 68px;
+    margin: 5px;
     font-size: 100%;
     float: right;
   }

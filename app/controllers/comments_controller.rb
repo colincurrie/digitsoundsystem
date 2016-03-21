@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   def parent_and_path
     if params[:story_id]
       parent = Story.find(params[:story_id])
-      path = stories_path
+      path = story_path(parent)
     elsif params[:photo_id]
       parent = Photo.find(params[:photo_id])
       path = photo_path parent

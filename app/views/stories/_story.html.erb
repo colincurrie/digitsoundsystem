@@ -8,5 +8,5 @@
   <% end %>
   <div class="title"><%= story.title %></div>
   <div class="body"><%= markdown(story.content) %></div>
-  <%= render 'comments/index', parent: story %>
+  <%= render 'comments/index', parent: story, parent_path: story_path(story) %>
 </div>

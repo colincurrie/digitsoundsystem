@@ -5,7 +5,7 @@ class StoriesController < ApplicationController
     @story ||= Story.new
     page = params.fetch('page', 1)
     per_page = params.fetch('per_page', 10)
-    @stories = Story.order('updated_at DESC').page(page).per_page(per_page)
+    @stories = Story.order('created_at DESC').page(page).per_page(per_page)
   end
 
   def new
@@ -18,7 +18,10 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-    logger.debug "Story is #{@story}: #{params}"
+    page = params.fetch('page', 1)
+    per_page = params.fetch('per_page', 10)
+    @comments = @story.comments.order('created_at DESC').page(page).per_page(per_page)
+    logger.debug "Story is #{@story}: #{params}, comments: #{@comments}"
   end
 
   def create
@@ -27,7 +30,7 @@ class StoriesController < ApplicationController
       @story = nil
       redirect_to stories_path
     else
-      @stories = Story.order('updated_at desc')
+      @stories = Story.order('created_at DESC')
       render :index
     end
   end

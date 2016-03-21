@@ -1,7 +1,12 @@
 <div class="comments">
   <% unless parent.comments.empty? %>
     <h2>Comments:</h2>
-    <% parent.comments.each do |comment| %>
+    <div class="comment">
+      <div class="body">
+        <%= parent.comments.count>5 ? link_to(pluralize(parent.comments.count-5, 'more comment'),parent_path) : '' %>
+      </div>
+    </div>
+    <% parent.comments.last(4).each do |comment| %>
       <div class="comment">
         <% if comment.user == current_user %>
           <div class="actions"><%= link_to 'remove', [parent, comment], method: :delete, data: {confirm: 'Are you sure?'} %></div>

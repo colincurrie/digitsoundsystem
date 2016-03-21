@@ -47,10 +47,10 @@ def create_stories
 end
 
 def create_story(index, total, user)
-  story = Story.create(title: LOREM.first, content: LOREM.last, user: user)
-  story_date = Time.now - (total*8*60*60) + (index*8*60*60)
+  story = Story.create(title: "Story #{index+1} of #{total}: #{LOREM.first}", content: LOREM.last(3).shuffle.first, user: user)
+  story_date = Time.now - (total*8*60*60) + rand(index*8*60*60)
   story.created_at = story_date
-  story.updated_at = story.created_at
+  story.updated_at = story_date
   if story.save
     num_comments = rand(MAX_COMMENTS)
     num_comments.times do |i|

@@ -1,6 +1,10 @@
 @import 'vars';
 
 .comments {
+  display: block;
+  a, p {
+    margin: 0.5em 0 0 0;
+  }
   .title {
     font-weight: bold;
   }
@@ -11,5 +15,14 @@
   }
   .comment:hover {
     background: $primary-background;
+  }
+
+  h2, .comment_form, .body {
+    margin: 0 0 0 75px;
+  }
+
+  .user {
+    float: left;
+    color: $secondary-text;
   }
 }

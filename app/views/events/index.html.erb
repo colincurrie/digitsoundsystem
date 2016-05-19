@@ -7,5 +7,5 @@
 
 <% unless @events.empty? %>
   <h2>Next Gig</h2>
-  <%= render 'event', event: @events.first %>
+  <%= render 'event', event: Event.order(:start_at).where(['start_at > ?', Time.now]).first %>
 <% end %>

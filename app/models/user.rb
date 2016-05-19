@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_presence_of :name
+
+  after_create :user_created
+
+  protected
+
+  def user_created
+    AdminMailer.new_user(self).deliver_later
+  end
 end

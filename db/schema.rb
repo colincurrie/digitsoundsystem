@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307214204) do
+ActiveRecord::Schema.define(version: 20160502141536) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -19,9 +19,11 @@ ActiveRecord::Schema.define(version: 20160307214204) do
     t.integer  "story_id"
     t.integer  "photo_id"
     t.integer  "mixtape_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "tune_id"
+    t.integer  "target_type"
+    t.integer  "target_id"
   end
 
   add_index "comments", ["mixtape_id", "created_at"], name: "index_comments_on_mixtape_id_and_created_at"
@@ -81,6 +83,12 @@ ActiveRecord::Schema.define(version: 20160307214204) do
   add_index "stories", ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
   add_index "stories", ["user_id"], name: "index_stories_on_user_id"
 
+  create_table "target_types", force: :cascade do |t|
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tunes", force: :cascade do |t|
     t.string   "url"
     t.string   "artist"
@@ -118,5 +126,19 @@ ActiveRecord::Schema.define(version: 20160307214204) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "url"
+    t.integer  "score",       default: 0
+    t.datetime "order"
+    t.integer  "user_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "videos", ["order"], name: "index_videos_on_order"
+  add_index "videos", ["user_id"], name: "index_videos_on_user_id"
 
 end

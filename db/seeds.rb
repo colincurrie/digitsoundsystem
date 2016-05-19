@@ -6,6 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+def create_target_types
+  TargetType.create name: 'story'
+  TargetType.create name: 'photo'
+  TargetType.create name: 'tune'
+  TargetType.create name: 'mixtape'
+  TargetType.create name: 'video'
+end
+
 def create_admins
   create_admin 'Colin', 'Currie', 'colin@digitsoundsystem.co.uk'
   create_admin 'Dan', 'Carrier', 'dan@digitsoundsystem.co.uk'
@@ -35,6 +43,8 @@ LOREM = [
 ]
 MAX_COMMENTS = 10
 MAX_STORIES = 100
+MAX_TUNES = 50
+MAX_VIDEOS = 50
 USERS = User.all
 
 def create_stories
@@ -67,5 +77,44 @@ def create_comment(index, user, story)
   comment.save
 end
 
+def create_tunes
+  max_tunes = rand(MAX_TUNES)
+  begin
+    # scrape youtube
+    youtube_tracks = RestClient::Request.execute(
+        url: 'http://www.youtube.com/', :method => :get, :verify_ssl => false).scan(/watch\?v=[^"]+/).map { |id| "http://www.youtube.com/#{id}" }
+    soundcloud_tracks = JSON.parse(RestClient.get("https://api.soundcloud.com/tracks.json?client_id=#{SOUNDCLOUD_ID}")).map{|t| t["permalink_url"]}
+  rescue
+    # fake it
+    youtube_tracks = (max_tunes/2).times.map { [*('a'..'z'), *('A'..'Z'), *('0'..'9')].shuffle[0, 11].join }
+  end
+  youtube_tracks.each_with_index do |youtube,i|
+    user = USERS[i % USERS.length]
+    Tune.create( url: youtube, artist: user.name, title: "YouTube #{i+1} of #{youtube_tracks.length}", user: user )
+  end
+  puts "Created #{youtube_tracks.length} YouTube Tunes"
+end
+
+def create_videos
+  max_videos = rand(MAX_VIDEOS)
+  begin
+    # scrape youtube
+    urls = RestClient::Request.execute(url: 'http://www.youtube.com/', :method => :get, :verify_ssl => false)
+               .scan(/watch\?v=[^"]+/).map { |id| "http://www.youtube.com/#{id}" }
+  rescue
+    # fake it
+    urls = (max_videos/2).times.map { [*('a'..'z'), *('A'..'Z'), *('0'..'9')].shuffle[0, 11].join }
+  end
+  urls.each_with_index do |url, i|
+    user = USERS[i % USERS.length]
+    description = LOREM[i%LOREM.length]
+    Video.create(title: "Video #{i+1} of #{urls.length}", description: description, url: url, user: user)
+  end
+  puts "Created #{urls.length} Videos"
+end
+
+create_target_types
 create_admins
 create_stories
+create_tunes
+create_videos

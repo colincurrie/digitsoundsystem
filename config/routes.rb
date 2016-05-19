@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :events
+  resources :videos
 
   # A single non-persistent contact for the form
   resource :contact, only: [:show, :create], controller: 'contact'

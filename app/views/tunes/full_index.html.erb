@@ -1,0 +1,28 @@
+<h1>All Tunes</h1>
+
+<% if current_user.try(:admin?) %>
+  <p>
+    <%= link_to 'Add a new tune', new_tune_path %>
+  </p>
+<% end %>
+
+<ol class="tunes">
+  <% @tunes.each_with_index do |tune, pos| %>
+    <li class="tune">
+      <div class="position" id="position_<%= pos+1 %>"></div>
+      <div class="clip"><%= raw tune.html %></div>
+      <div class="title"><%= tune.title %></div>
+      <div class="artist">by <%= tune.artist %></div>
+      <div class="info">Added by
+        <%= content_tag :span, real_user(tune.user), class: 'user' %>
+        <%= time_ago_in_words(tune.created_at) %> ago.
+      </div>
+      <div class="comments"><%= link_to "#{pluralize(tune.comments.count, 'Comment')}", tune_path(tune) %></div>
+      <% if current_user.try :admin? %>
+        <%= link_to 'Open', tune_path(tune) %>
+        <%= link_to 'Edit', edit_tune_path(tune) %>
+        <%= link_to 'Delete', tune, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </li>
+  <% end %>
+</ol>

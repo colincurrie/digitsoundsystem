@@ -1,0 +1,43 @@
+@import 'vars';
+
+.videos {
+  list-style: none;
+  padding: 0;
+
+  li:hover {
+    background: $secondary-background;
+  }
+  .video {
+    min-height: 300px; // min youtube size
+    .clip, iframe {
+      border: 0;
+      min-width: 600px;
+      min-height: 300px;
+      float: right;
+    }
+    //iframe {
+    //  width: 590px;
+    //  height: 295px;
+    //}
+    .title {
+      font-size: $large-font;
+      @media screen and (orientation: portrait) {
+        font-size: $small-font;
+      }
+      color: $secondary-color;
+      font-weight: bold;
+    }
+    .description {
+
+    }
+    .user {
+      color: $secondary-text;
+    }
+  }
+}
+
+// forms
+#video_description {
+  resize: vertical;
+  height: 5em;
+}

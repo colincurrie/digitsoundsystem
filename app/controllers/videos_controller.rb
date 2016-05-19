@@ -4,7 +4,7 @@ class VideosController < ApplicationController
     @title = 'Videos'
     page = params.fetch('page', 1)
     per_page = params.fetch('per_page', 10)
-    @videos = Video.order('score').page(page).per_page(per_page)
+    @videos = Video.order('score desc').page(page).per_page(per_page)
   end
 
   def new

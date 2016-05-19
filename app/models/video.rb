@@ -4,6 +4,8 @@ class Video < ActiveRecord::Base
 
   validates_presence_of :title, :url
 
+  before_save :update_score
+
   def html
     unless url.empty?
       youtube_id = url.split('=').last
@@ -11,4 +13,9 @@ class Video < ActiveRecord::Base
     end
   end
 
+  protected
+
+  def update_score
+    self.score = self.created_at || Time.now
+  end
 end

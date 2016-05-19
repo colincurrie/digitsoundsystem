@@ -3,4 +3,4 @@
 <% else %>
   <%= mixtape.description %>
 <% end %>
-<%= render 'comments/index', parent: mixtape %>
+<%= render 'comments/index', parent: mixtape, parent_path: mixtape_path(mixtape) %>

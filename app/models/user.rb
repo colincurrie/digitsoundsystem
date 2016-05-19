@@ -17,6 +17,6 @@ class User < ActiveRecord::Base
   protected
 
   def user_created
-    AdminMailer.new_user(self).deliver_later
+    AdminMailer.new_user(self).deliver_later unless Rails.env == 'development'
   end
 end

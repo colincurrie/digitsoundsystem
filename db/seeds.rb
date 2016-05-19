@@ -6,6 +6,20 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+LOREM = [
+    'Lorem ipsum dolor sit amet',
+    'magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ',
+    'magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ' +
+        'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ' +
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
+    'magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ' +
+        'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ' +
+        'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. '
+]
+MAX_COMMENTS = 10
+MAX_STORIES = 100
+NUM_STORIES = 25
+
 def create_admins
   create_admin 'Colin', 'Currie', 'colin@digitsoundsystem.co.uk'
   create_admin 'Dan', 'Carrier', 'dan@digitsoundsystem.co.uk'
@@ -23,25 +37,11 @@ def create_admin name, surname, email
   end
 end
 
-LOREM = [
-    'Lorem ipsum dolor sit amet',
-    'magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ',
-    'magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ' +
-    'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ' +
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
-    'magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ' +
-    'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ' +
-    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. '
-]
-MAX_COMMENTS = 10
-MAX_STORIES = 100
-USERS = User.all
-
 def create_stories
-  num_stories = rand(MAX_STORIES)
   @users = User.all
+  num_stories = NUM_STORIES
   num_stories.times do |i|
-    create_story i, num_stories, USERS[i%USERS.count]
+    create_story i, num_stories, @users[i%@users.count]
   end
   puts "Added #{Story.count} Stories"
 end
@@ -54,7 +54,7 @@ def create_story(index, total, user)
   if story.save
     num_comments = rand(MAX_COMMENTS)
     num_comments.times do |i|
-      create_comment i, USERS[i%USERS.count], story
+      create_comment i, @users[i%@users.count], story
     end
     puts "Created #{story.comments.count} comments for #{story}"
   end

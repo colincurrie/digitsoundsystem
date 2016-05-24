@@ -15,11 +15,15 @@ Rails.application.routes.draw do
   end
   resources :tunes do
     resources :comments
+    member do
+      get 'move_up'
+      get 'move_down'
+    end
   end
   resources :videos do
     member do
-      get 'up'
-      get 'down'
+      get 'move_up'
+      get 'move_down'
     end
   end
   resources :events

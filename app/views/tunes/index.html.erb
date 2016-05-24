@@ -7,9 +7,9 @@
 <% end %>
 
 <ol class="tunes">
-  <% @tunes.each_with_index do |tune,pos| %>
+  <% @tunes.each do |tune| %>
     <li class="tune">
-      <div class="position" id="position_<%= pos+1 %>"></div>
+      <div class="position" id="position_<%= tune.position %>"></div>
       <div class="clip"><%= raw tune.html %></div>
       <div class="title"><%= tune.title %></div>
       <div class="artist">by <%= tune.artist %></div>
@@ -22,7 +22,10 @@
         <%= link_to 'Open', tune_path(tune) %>
         <%= link_to 'Edit', edit_tune_path(tune) %>
         <%= link_to 'Delete', tune, :confirm => 'Are you sure?', :method => :delete %>
-      <% end %>
+        <br>
+        <%= link_to('Move Up', move_up_tune_path(tune)) unless tune.best? %>
+        <%= link_to('Move Down', move_down_tune_path(tune)) unless tune.worst? %>
+    <% end %>
     </li>
   <% end %>
 </ol>

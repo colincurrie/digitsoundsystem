@@ -21,8 +21,8 @@
         <%= link_to 'Edit', edit_video_path(video) %>
         <%= link_to 'Delete', video_path(video), :confirm => 'Are you sure?', :method => :delete %>
         <br>
-        <%= link_to('Move Up', up_video_path(video)) unless video.best? %>
-        <%= link_to('Move Down', down_video_path(video)) unless video.worst? %>
+        <%= link_to('Move Up', move_up_video_path(video)) unless video.best? %>
+        <%= link_to('Move Down', move_down_video_path(video)) unless video.worst? %>
       <% end %>
     </li>
   <% end %>

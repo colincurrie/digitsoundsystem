@@ -8,7 +8,8 @@ class TunesController < ApplicationController
 
   def index
     @title = 'Tunes'
-    @tunes = Tune.order('updated_at desc').first(10)
+    @tunes = Tune.scored.page(params.fetch('page',1)).per_page(params.fetch('per_page',10))
+    @total = Tune.count
   end
 
   def new
@@ -46,6 +47,16 @@ class TunesController < ApplicationController
   def destroy
     @tune = Tune.find(params[:id])
     @tune.destroy
+    redirect_to tunes_path
+  end
+
+  def move_up
+    Tune.find(params[:id]).move_up
+    redirect_to tunes_path
+  end
+
+  def move_down
+    Tune.find(params[:id]).move_down
     redirect_to tunes_path
   end
 

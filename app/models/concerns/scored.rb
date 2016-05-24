@@ -28,6 +28,10 @@ module Scored
     self.class.where(['score<?', self.score]).count == 0
   end
 
+  def position
+    self.class.scored.index(self) + 1
+  end
+
   protected
 
   def bump_position(direction)

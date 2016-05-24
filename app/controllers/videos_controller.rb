@@ -2,9 +2,7 @@ class VideosController < ApplicationController
 
   def index
     @title = 'Videos'
-    page = params.fetch('page', 1)
-    per_page = params.fetch('per_page', 10)
-    @videos = Video.order('score desc').page(page).per_page(per_page)
+    @videos = Video.scored.page(params.fetch('page', 1)).per_page(params.fetch('per_page',10))
     @total = Video.count
   end
 
@@ -45,12 +43,12 @@ class VideosController < ApplicationController
     redirect_to videos_path
   end
 
-  def up
+  def move_up
     Video.find(params[:id]).move_up
     redirect_to videos_path
   end
 
-  def down
+  def move_down
     Video.find(params[:id]).move_down
     redirect_to videos_path
   end

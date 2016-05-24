@@ -1,8 +1,11 @@
 class Tune < ActiveRecord::Base
+
   SOUNDCLOUD_URL = /soundcloud.com/
   YOUTUBE_URL = /www.youtube.com/
   DISCOGS_URL = /www.discogs.com/
   JUNO_URL = /www.juno.co.uk/
+
+  include Scored
 
   belongs_to :user
   has_many :comments
@@ -10,7 +13,7 @@ class Tune < ActiveRecord::Base
   validates_presence_of :artist
   validates_presence_of :title
 
-  before_save :update_score
+  before_create :initialise_score
 
   def initialize(params = {})
     super params
@@ -19,12 +22,6 @@ class Tune < ActiveRecord::Base
 
   def after_create
     self.order = created_at
-  end
-
-  protected
-
-  def update_score
-    self.score = self.created_at || Time.now
   end
 
   private
@@ -39,7 +36,7 @@ class Tune < ActiveRecord::Base
         Rails.logger.debug 'TODO: scrape the artist & title if possible'
       end
     elsif url =~ SOUNDCLOUD_URL
-      response = RestClient.get('http://soundcloud.com/oembed?url=' + URI.encode(tune_params[:url]) + '&format=json')
+      response = RestClient.get('http://soundcloud.com/oembed?url=' + URI.encode(self.url) + '&format=json')
       if response.code == 200
         data = JSON.parse(response.body)
         new_title, new_artist = data['title'].split(' by ')

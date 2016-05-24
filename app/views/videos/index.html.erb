@@ -7,7 +7,7 @@
 <% end %>
 
 <ul class="videos">
-  <% @videos.each do |video| %>
+  <% @videos.each_with_index do |video, i| %>
     <li class="video">
       <div class="clip"><%= raw video.html %></div>
       <div class="title"><%= video.title %></div>
@@ -19,7 +19,10 @@
       <% if current_user.try :admin? %>
         <%= link_to 'Open', video_path(video) %>
         <%= link_to 'Edit', edit_video_path(video) %>
-        <%= link_to 'Delete', video, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to 'Delete', video_path(video), :confirm => 'Are you sure?', :method => :delete %>
+        <br>
+        <%= link_to('Move Up', up_video_path(video)) unless video.best? %>
+        <%= link_to('Move Down', down_video_path(video)) unless video.worst? %>
       <% end %>
     </li>
   <% end %>

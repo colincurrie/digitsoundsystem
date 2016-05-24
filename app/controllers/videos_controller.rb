@@ -5,6 +5,7 @@ class VideosController < ApplicationController
     page = params.fetch('page', 1)
     per_page = params.fetch('per_page', 10)
     @videos = Video.order('score desc').page(page).per_page(per_page)
+    @total = Video.count
   end
 
   def new
@@ -40,8 +41,17 @@ class VideosController < ApplicationController
   end
 
   def destroy
-    @video = Video.find(params[:id])
-    @video.destroy
+    Video.find(params[:id]).destroy
+    redirect_to videos_path
+  end
+
+  def up
+    Video.find(params[:id]).move_up
+    redirect_to videos_path
+  end
+
+  def down
+    Video.find(params[:id]).move_down
     redirect_to videos_path
   end
 

@@ -10,6 +10,8 @@ class Tune < ActiveRecord::Base
   validates_presence_of :artist
   validates_presence_of :title
 
+  before_save :update_score
+
   def initialize(params = {})
     super params
     build_html
@@ -17,6 +19,12 @@ class Tune < ActiveRecord::Base
 
   def after_create
     self.order = created_at
+  end
+
+  protected
+
+  def update_score
+    self.score = self.created_at || Time.now
   end
 
   private

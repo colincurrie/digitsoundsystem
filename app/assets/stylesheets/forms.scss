@@ -30,18 +30,18 @@ input[type=text], input[type=email], input[type=password], textarea, input[type=
 
 input[type=submit] {
   float: none;
-  background: $primary-color;
+  background: $secondary-color;
   border: 0;
   padding: 10px;
   width: 100%;
   margin: 20px auto;
   font-size: $large-font;
-  color: $secondary-background;
+  color: $primary-text;
   cursor: pointer;
 }
 
 input[type=submit]:hover {
-  color: $primary-text;
+  color: $secondary-background;
 }
 
 input.cancel {
@@ -62,7 +62,7 @@ label {
 
 .field_with_errors {
   input, textarea {
-    border: 2px solid #f99;
+    border: 2px solid $secondary-color;
   }
 }
 

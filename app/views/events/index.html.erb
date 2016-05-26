@@ -5,7 +5,7 @@
 
 <div id="calendar"></div>
 
-<% unless @events.empty? %>
+<% unless Event.next.nil? %>
   <h2>Next Gig</h2>
-  <%= render 'event', event: Event.order(:start_at).where(['start_at > ?', Time.now]).first %>
+  <%= render 'event', event: Event.next %>
 <% end %>

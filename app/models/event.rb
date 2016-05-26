@@ -17,4 +17,8 @@ class Event < ActiveRecord::Base
         description: self.description
     }
   end
+
+  def self.next
+    order(:start_at).where(['end_at>?', Time.now]).first
+  end
 end

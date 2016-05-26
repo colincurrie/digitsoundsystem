@@ -10,12 +10,13 @@ module Scored
   end
 
   def move_to(position)
+    scored = self.class.scored
     if position <= 1
       self.score = Time.now.to_i
     elsif position >= Video.count
-      self.score = self.scored.last.score - 1
+      self.score = scored.last.score - 1
     else
-      self.score = (self.scored[position].score + self.scored[position-1].score) / 2
+      self.score = (scored[position].score + scored[position-1].score) / 2
     end
     self.save
   end
@@ -30,6 +31,12 @@ module Scored
 
   def position
     self.class.scored.index(self) + 1
+  end
+
+  module ClassMethods
+    def scored
+      order('score desc')
+    end
   end
 
   protected
@@ -53,9 +60,4 @@ module Scored
     self.score = Time.now.to_i
   end
 
-  module ClassMethods
-    def scored
-      order('score desc')
-    end
-  end
 end

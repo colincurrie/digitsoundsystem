@@ -4,12 +4,10 @@ class PhotosController < ApplicationController
 
   def index
     @title = 'Gallery'
-    # TODO: paginate
-    # TODO: refactor this or DRY it up a bit or something... it's ugly
 
     page = params.fetch('page', 1)
     per_page = params.fetch('per_page', 35)
-    @photos = Photo.order('created_at DESC, score DESC').page(page).per_page(per_page)
+    @photos = Photo.scored.page(page).per_page(per_page)
     queue = Queue.new
     @photos.each { |photo| queue << photo }
 

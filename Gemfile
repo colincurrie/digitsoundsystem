@@ -62,6 +62,9 @@ gem 'mixcloud'
 # Organizing DB seeds
 gem 'seedbank'
 
+# Dre Day
+gem 'chronic'
+
 # Google custom search API
 gem 'google_custom_search_api'
 

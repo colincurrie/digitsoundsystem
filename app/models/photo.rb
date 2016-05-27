@@ -4,6 +4,8 @@ class Photo < ActiveRecord::Base
 
   include Scored
 
+  before_create :initialise_score
+
   has_attached_file :image,
                 url: '/gallery/:id/:style/:basename.:extension',
                 path: ':rails_root/public/gallery/:id/:style/:basename.:extension',

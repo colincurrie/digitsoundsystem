@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
 
   belongs_to :user
+  has_many :comments
 
   scope :between, lambda {|start_time, end_time| {:conditions => ["? < starts_at and starts_at < ?", Event.sanitize(start_time), Event.sanitize(end_time)] }}
 

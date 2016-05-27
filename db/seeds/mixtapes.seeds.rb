@@ -6,9 +6,9 @@ after :users do
       'anim id est laborum.'
   urls = JSON.parse(RestClient.get('http://api.mixcloud.com/DigitSoundSystem/cloudcasts'))['data'].map { |c| c['url'] }
   users = User.all.to_a
-  urls.each_with_index do |url,i|
+  urls.reverse.each_with_index do |url,i|
     target = Mixtape.new(user: users.sample, url: url, description: lorem)
-    created = Time.now - ((urls.count-i)*60*60*24*7*4) # one mixtape every 4 weeks
+    created = Time.now - ((urls.count-i)*60*60*24*20) # one mixtape every 20 days
     target.created_at = target.updated_at = created
     target.save
   end

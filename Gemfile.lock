@@ -43,6 +43,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (8.2.1)
+    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -212,6 +213,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  chronic
   coffee-rails (~> 4.1.0)
   devise
   fullcalendar-rails

@@ -16,11 +16,11 @@ Rails.application.routes.draw do
   end
 
   resources :stories, concerns: :commentable
-  resources :photos, concerns: :commentable
+  resources :events, concerns: :commentable
+  resources :photos, concerns: [:commentable, :scorable]
   resources :mixtapes, concerns: [:commentable, :scorable]
   resources :tunes, concerns: [:commentable, :scorable]
   resources :videos, concerns: [:commentable, :scorable]
-  resources :events
 
   # A single non-persistent contact for the form
   resource :contact, only: [:show, :create], controller: 'contact'

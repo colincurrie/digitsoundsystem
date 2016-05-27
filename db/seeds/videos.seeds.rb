@@ -27,6 +27,6 @@ after :users do
     created = Time.now - (num_videos*frequency)+(i*frequency)
     Video.create(title: "Video #{i+1} of #{num_videos}", description: description, url: url, user: user, score: created, created_at: created)
   end
-  puts "Created #{num_videos} Videos"
+  puts "Added #{num_videos} Videos"
 end
 

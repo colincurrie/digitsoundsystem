@@ -31,7 +31,6 @@ class EventsController < ApplicationController
   end
 
   def index
-    # TODO: paginate
     @events = Event.all
     respond_to do |format|
       format.html

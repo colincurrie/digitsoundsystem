@@ -8,7 +8,6 @@ class << self
 
     user = User.find_or_create_by name: name, surname: surname, email: email, bio: lorem
     user.update(password: 'password', admin: true, mailing_list: true)
-    puts "Created #{name} (#{email})"
   end
 end
 
@@ -16,3 +15,5 @@ create_user 'Colin', 'Currie', 'colin@digitsoundsystem.co.uk'
 create_user 'Dan', 'Carrier', 'dan@digitsoundsystem.co.uk'
 create_user 'Matt', 'Gross', 'matt@digitsoundsystem.co.uk'
 create_user 'Carolyn', 'Boyle', 'carolyn@digitsoundsystem.co.uk'
+puts 'Added 4 users'
+

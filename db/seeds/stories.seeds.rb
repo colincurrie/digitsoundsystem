@@ -18,5 +18,5 @@ after :users do
     story.created_at = story.updated_at = Time.now - ((num_stories-i)*60*60*24*7) # one story a week
     story.save
   end
-  puts "Created #{num_stories} stories"
+  puts "Added #{num_stories} stories"
 end

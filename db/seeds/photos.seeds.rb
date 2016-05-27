@@ -3,8 +3,7 @@ after :users do
   if images.empty?
     puts 'Specify SRC_PHOTOS to specify source images to seed Photos'
   else
-    num_photos = 5
-    puts "Creating #{num_photos} photos ..."
+    num_photos = 50
     users = User.all.to_a
     num_photos.times do |i|
       photo = Photo.new(description: "Photo #{i+1} of #{num_photos}", user: users.sample, image: File.new(images.pop))
@@ -12,6 +11,6 @@ after :users do
       photo.created_at = photo.updated_at = created
       photo.save
     end
-    puts 'done'
+    puts "Added #{num_photos} photos"
   end
 end

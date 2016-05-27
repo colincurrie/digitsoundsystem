@@ -12,8 +12,8 @@ class Tune < ActiveRecord::Base
 
   validates_presence_of :artist
   validates_presence_of :title
-
   before_create :initialise_score
+
 
   def initialize(params = {})
     super params

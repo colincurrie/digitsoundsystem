@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :stories, concerns: :commentable
   resources :photos, concerns: :commentable
-  resources :mixtapes, concerns: :commentable
+  resources :mixtapes, concerns: [:commentable, :scorable]
   resources :tunes, concerns: [:commentable, :scorable]
   resources :videos, concerns: [:commentable, :scorable]
   resources :events

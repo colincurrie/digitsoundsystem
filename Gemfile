@@ -56,6 +56,15 @@ gem 'will_paginate', '~> 3.0.6'
 # SoundCloud API
 gem 'soundcloud'
 
+# MixCloud API
+gem 'mixcloud'
+
+# Organizing DB seeds
+gem 'seedbank'
+
+# Google custom search API
+gem 'google_custom_search_api'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

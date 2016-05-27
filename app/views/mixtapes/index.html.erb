@@ -2,7 +2,7 @@
 
 <% if current_user.try(:admin?) %>
   <p>
-  <%= link_to 'Add a new mixtape', new_mixtape_path %>
+    <%= link_to 'Add a new mixtape', new_mixtape_path %>
   </p>
 <% end %>
 
@@ -11,12 +11,19 @@
     <li class="mix">
       <h2><%= mixtape.title %></h2>
       <% if current_user.try :admin? %>
-        <span class="actions">
-          <%= link_to 'Open', mixtape_path(mixtape) %>
-          <%= link_to 'Edit', edit_mixtape_path(mixtape) %>
-        </span>
+        <%= link_to 'Open', mixtape_path(mixtape) %>
+        <%= link_to 'Edit', edit_mixtape_path(mixtape) %>
+        <%= link_to 'Delete', mixtape_path(mixtape), :confirm => 'Are you sure?', :method => :delete %>
+        <br>
+        <%= link_to('Move Up', move_up_mixtape_path(mixtape)) unless mixtape.best? %>
+        <%= link_to('Move Down', move_down_mixtape_path(mixtape)) unless mixtape.worst? %>
       <% end %>
       <%= render 'mixtape', mixtape: mixtape %>
+      <div class="info">Added by
+        <%= content_tag :span, real_user(mixtape.user), class: 'user' %>
+        <%= time_ago_in_words(mixtape.created_at) %> ago.
+      </div>
     </li>
   <% end %>
 </ul>
+<%= will_paginate @mixtapes, style: 'background: $primary-color; color: $secondary-text' %>

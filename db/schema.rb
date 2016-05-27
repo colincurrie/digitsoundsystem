@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519202714) do
+ActiveRecord::Schema.define(version: 20160527000450) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -19,11 +19,9 @@ ActiveRecord::Schema.define(version: 20160519202714) do
     t.integer  "story_id"
     t.integer  "photo_id"
     t.integer  "mixtape_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "tune_id"
-    t.integer  "target_type"
-    t.integer  "target_id"
     t.integer  "video_id"
     t.integer  "event_id"
   end
@@ -56,10 +54,10 @@ ActiveRecord::Schema.define(version: 20160519202714) do
     t.string   "url"
     t.string   "title"
     t.text     "description"
-    t.string   "html"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "score"
   end
 
   add_index "mixtapes", ["user_id"], name: "index_mixtapes_on_user_id"
@@ -87,12 +85,6 @@ ActiveRecord::Schema.define(version: 20160519202714) do
   add_index "stories", ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
   add_index "stories", ["user_id"], name: "index_stories_on_user_id"
 
-  create_table "target_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "tunes", force: :cascade do |t|
     t.string   "url"
     t.string   "artist"
@@ -119,9 +111,9 @@ ActiveRecord::Schema.define(version: 20160519202714) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "admin",                  default: false
     t.string   "name"
     t.string   "surname"
+    t.boolean  "admin",                  default: false
     t.boolean  "mailing_list",           default: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false

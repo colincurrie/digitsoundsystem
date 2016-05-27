@@ -1,10 +1,8 @@
 class MixtapesController < ApplicationController
 
-  MIXCLOUD_URL = /www.mixcloud.com/
-
   def index
     @title = 'Mixtapes'
-    @mixtapes = Mixtape.order('updated_at desc')
+    @mixtapes = Mixtape.scored.page(params.fetch('page',1)).per_page(params.fetch('per_page',10))
   end
 
   def new
@@ -33,7 +31,6 @@ class MixtapesController < ApplicationController
   def update
     properties = mixtape_params
     @mixtape = Mixtape.find(params[:id])
-
     if @mixtape.update(properties)
       redirect_to mixtapes_path
     else
@@ -47,16 +44,20 @@ class MixtapesController < ApplicationController
     redirect_to mixtapes_path
   end
 
+  def move_up
+    Mixtape.find(params[:id]).move_up
+    redirect_to mixtapes_path
+  end
+
+  def move_down
+    Mixtape.find(params[:id]).move_down
+    redirect_to mixtapes_path
+  end
+
   private
 
   def mixtape_params
-    extended_params = { user: current_user }
-    url = params[:mixtape][:url] rescue nil
-    if MIXCLOUD_URL =~ url
-      response = RestClient.get url.sub('www', 'api') + 'embed-html/?width=900&height=65&color=ff0000'
-      extended_params[:html] = response.body if response.code == 200
-    end
-    params.require(:mixtape).permit(:title, :description, :url).merge extended_params
+    params.require(:mixtape).permit(:title, :description, :url).merge user: current_user
   end
 
 end

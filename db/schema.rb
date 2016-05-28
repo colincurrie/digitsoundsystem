@@ -91,11 +91,10 @@ ActiveRecord::Schema.define(version: 20160527000450) do
     t.string   "artist"
     t.string   "title"
     t.string   "html"
-    t.integer  "score",      default: 0
     t.datetime "order"
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "tunes", ["order"], name: "index_tunes_on_order"

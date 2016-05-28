@@ -1,8 +1,7 @@
 after :users do
+  puts 'Specify SRC_PHOTOS to specify source images to seed Photos' unless ENV['SRC_PHOTOS']
   images = Dir[ENV.fetch('SRC_PHOTOS','')].shuffle
-  if images.empty?
-    puts 'Specify SRC_PHOTOS to specify source images to seed Photos'
-  else
+  unless images.empty?
     num_photos = 50
     users = User.all.to_a
     num_photos.times do |i|

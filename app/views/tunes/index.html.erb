@@ -32,3 +32,6 @@ though Soundcloud or youTube.</p>
     </li>
   <% end %>
 </ol>
+<% if current_user.try(:admin?) %>
+  <%= will_paginate @tunes, style: 'background: $primary-color; color: $secondary-text' %>
+<% end %>

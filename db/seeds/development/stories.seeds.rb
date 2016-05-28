@@ -1,5 +1,4 @@
-after :stories, :photos, :mixtapes, :tunes, :videos, :events do
-
+after :users do
   lorem = [
       'Lorem ipsum dolor sit amet',
       'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ',
@@ -12,12 +11,12 @@ after :stories, :photos, :mixtapes, :tunes, :videos, :events do
           'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ' +
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore'
   ]
-
-  targets = [Story, Photo, Mixtape, Tune, Video, Event]
   users = User.all.to_a
-  100.times do
-    options = { content: lorem.sample, user: users.sample }
-    targets.sample.all.to_a.sample.comments.create options
+  num_stories = 25
+  num_stories.times do |i|
+    story = Story.create(title: "Story #{i+1} of #{num_stories}: #{lorem.first}", content: lorem.last(3).shuffle.first, user: users.sample)
+    story.created_at = story.updated_at = Time.now - ((num_stories-i)*60*60*24*7) # one story a week
+    story.save
   end
-  puts 'Added 100 Comments'
+  puts "Added #{num_stories} Stories"
 end

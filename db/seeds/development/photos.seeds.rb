@@ -10,6 +10,6 @@ after :users do
       photo.created_at = photo.updated_at = created
       photo.save
     end
-    puts "Added #{num_photos} photos"
+    puts "Added #{num_photos} Photos"
   end
 end

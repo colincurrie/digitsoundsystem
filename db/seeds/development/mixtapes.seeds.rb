@@ -12,6 +12,6 @@ after :users do
     target.created_at = target.updated_at = created
     target.save
   end
-  puts "Added #{urls.count} mixtapes"
+  puts "Added #{urls.count} Mixtapes"
 end
 

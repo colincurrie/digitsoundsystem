@@ -25,7 +25,7 @@ after :users do
     url = urls[i%urls.size] # use urls in sequence
     frequency = 60*60*24*4 # a couple of videos a week
     created = Time.now - (num_videos*frequency)+(i*frequency)
-    Video.create(title: "Video #{i+1} of #{num_videos}", description: description, url: url, user: user, score: created, created_at: created)
+    Video.create(title: "Video #{i+1} of #{num_videos}", description: description, url: url, user: user, created_at: created, updated_at: created)
   end
   puts "Added #{num_videos} Videos"
 end

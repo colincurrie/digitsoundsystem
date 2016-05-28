@@ -1,12 +1,13 @@
 <%= link_to 'Back to the list', videos_path %>
+<% if current_user.try :admin? %>
+  <%= link_to 'Edit', edit_video_path(@video) %>
+  <%= link_to 'Delete', @video, confirm: 'Are you sure?', method: :delete %>
+<% end %>
 <h2 class="title"><%= @video.title %></h2>
 <p class="description">by <%= @video.description %></p>
 <p class="info">Added by
   <%= content_tag :span, real_user(@video.user), class: 'user' %>
   <%= time_ago_in_words(@video.created_at) %> ago.
 </p>
-<% if current_user.try :admin? %>
-  <%= link_to 'Edit', edit_video_path(@video) %>
-  <%= link_to 'Delete', @video, confirm: 'Are you sure?', method: :delete %>
-<% end %>
 <div class="clip"><%= raw @video.html %></div>
+<%= render 'comments/index', parent: @video %>

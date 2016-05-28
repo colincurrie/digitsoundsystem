@@ -7,15 +7,8 @@
 <% end %>
 
 <ul class="videos">
-  <% @videos.each_with_index do |video, i| %>
+  <% @videos.each do |video| %>
     <li class="video">
-      <div class="clip"><%= raw video.html %></div>
-      <div class="title"><%= video.title %></div>
-      <div class="description"><%= video.description %></div>
-      <div class="info">Added by
-        <%= content_tag :span, real_user(video.user), class: 'user' %>
-        <%= time_ago_in_words(video.created_at) %> ago.
-      </div>
       <% if current_user.try :admin? %>
         <%= link_to 'Open', video_path(video) %>
         <%= link_to 'Edit', edit_video_path(video) %>
@@ -24,6 +17,7 @@
         <%= link_to('Move Up', move_up_video_path(video)) unless video.best? %>
         <%= link_to('Move Down', move_down_video_path(video)) unless video.worst? %>
       <% end %>
+      <%= render 'video', video: video %>
     </li>
   <% end %>
 </ul>

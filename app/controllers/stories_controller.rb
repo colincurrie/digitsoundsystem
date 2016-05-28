@@ -1,11 +1,11 @@
 class StoriesController < ApplicationController
 
+  DEFAULT_PER_PAGE = 10
+
   def index
     @title = 'News'
     @story ||= Story.new
-    page = params.fetch('page', 1)
-    per_page = params.fetch('per_page', 10)
-    @stories = Story.order('created_at DESC').page(page).per_page(per_page)
+    @stories = stories
   end
 
   def new
@@ -18,10 +18,7 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-    page = params.fetch('page', 1)
-    per_page = params.fetch('per_page', 10)
     @comments = @story.comments.order('created_at DESC').page(page).per_page(per_page)
-    logger.debug "Story is #{@story}: #{params}, comments: #{@comments}"
   end
 
   def create
@@ -30,7 +27,7 @@ class StoriesController < ApplicationController
       @story = nil
       redirect_to stories_path
     else
-      @stories = Story.order('created_at DESC')
+      @stories = stories
       render :index
     end
   end
@@ -52,12 +49,24 @@ class StoriesController < ApplicationController
   end
 
   private
-    def story_params
-      params.require(:story).permit(:title, :content).merge user: current_user
-    end
+
+  def story_params
+    params.require(:story).permit(:title, :content).merge user: current_user
+  end
 
   def admin?
     current_user.try(:admin?)
   end
 
+  def stories
+    Story.order('created_at DESC').page(page).per_page(per_page)
+  end
+
+  def page
+    params.fetch('page', 1)
+  end
+
+  def per_page
+    params.fetch('per_page', DEFAULT_PER_PAGE)
+  end
 end

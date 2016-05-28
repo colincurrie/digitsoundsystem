@@ -20,21 +20,12 @@ class CommentsController < ApplicationController
   end
 
   def parent_and_path
-    if params[:story_id]
-      parent = Story.find(params[:story_id])
-      path = story_path(parent)
-    elsif params[:photo_id]
-      parent = Photo.find(params[:photo_id])
-      path = photo_path parent
-    elsif params[:mixtape_id]
-      parent = Mixtape.find(params[:mixtape_id])
-      path = mixtapes_path
-    elsif params[:tune_id]
-      parent = Tune.find(params[:tune_id])
-      path = tune_path(parent)
-    else
-      parent = nil
-      path = root_path
+    parent_key = params.keys.select { |k| k=~/_id$/ }.first
+    if parent_key
+      parent_class = parent_key.scan(/(.*)_id$/).flatten.first.capitalize.constantize
+      parent = parent_class.find(params[parent_key])
+      #path = self.send(parent_key.gsub('_id', '_path'), parent)
+      path = self.send(parent_key.gsub('_id', 's_path'))
     end
     [parent, path]
   end

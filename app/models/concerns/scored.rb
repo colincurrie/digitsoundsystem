@@ -57,7 +57,7 @@ module Scored
   end
 
   def initialise_score
-    self.score = Time.now.to_i
+    self.score = self.created_at.to_i
   end
 
 end

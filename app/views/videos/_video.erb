@@ -1,0 +1,8 @@
+<div class="clip"><%= raw video.html %></div>
+<div class="title"><%= video.title %></div>
+<div class="description"><%= video.description %></div>
+<div class="info">Added by
+  <%= content_tag :span, real_user(video.user), class: 'user' %>
+  <%= time_ago_in_words(video.created_at) %> ago.
+</div>
+<%= render 'comments/index', parent: video, parent_path: video_path(video) %>

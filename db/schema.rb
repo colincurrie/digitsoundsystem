@@ -91,13 +91,12 @@ ActiveRecord::Schema.define(version: 20160527000450) do
     t.string   "artist"
     t.string   "title"
     t.string   "html"
-    t.datetime "order"
+    t.integer  "score",      default: 0
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "tunes", ["order"], name: "index_tunes_on_order"
   add_index "tunes", ["user_id"], name: "index_tunes_on_user_id"
 
   create_table "users", force: :cascade do |t|

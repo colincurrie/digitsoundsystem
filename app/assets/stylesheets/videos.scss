@@ -15,10 +15,6 @@
       min-height: 300px;
       float: right;
     }
-    //iframe {
-    //  width: 590px;
-    //  height: 295px;
-    //}
     .title {
       font-size: $large-font;
       @media screen and (orientation: portrait) {
@@ -28,10 +24,17 @@
       font-weight: bold;
     }
     .description {
-
+      min-height: 260px;
     }
     .user {
       color: $secondary-text;
+    }
+    .actions {
+      text-align: right;
+      float: none;
+    }
+    .comments .actions {
+      float: right;
     }
   }
 }

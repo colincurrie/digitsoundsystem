@@ -9,14 +9,15 @@
 <ul class="videos">
   <% @videos.each do |video| %>
     <li class="video">
-      <% if current_user.try :admin? %>
-        <%= link_to 'Open', video_path(video) %>
-        <%= link_to 'Edit', edit_video_path(video) %>
-        <%= link_to 'Delete', video_path(video), :confirm => 'Are you sure?', :method => :delete %>
-        <br>
-        <%= link_to('Move Up', move_up_video_path(video)) unless video.best? %>
-        <%= link_to('Move Down', move_down_video_path(video)) unless video.worst? %>
-      <% end %>
+      <div class="actions">
+        <% if current_user.try :admin? %>
+          <%= link_to 'Open', video_path(video) %>
+          <%= link_to 'Edit', edit_video_path(video) %>
+          <%= link_to 'Delete', video_path(video), :confirm => 'Are you sure?', :method => :delete %><br>
+          <%= link_to('Move Up', move_up_video_path(video)) unless video.best? %>
+          <%= link_to('Move Down', move_down_video_path(video)) unless video.worst? %>
+        <% end %>
+      </div>
       <%= render 'video', video: video %>
     </li>
   <% end %>

@@ -52,8 +52,28 @@ header {
 }
 
 footer {
-  text-align: right;
   margin: 0 5px;
+
+  .copyright {
+    text-align: right;
+  }
+
+  a.social {
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    float: left;
+  }
+
+  $social: email facebook twitter youtube instagram soundcloud mixcloud;
+  @each $icon in $social {
+    a.#{$icon}-button {
+      background-image: url("#{$icon}.svg");
+    }
+    a.#{$icon}-button:hover {
+      background-image: url("#{$icon}_hover.svg");
+    }
+  }
 }
 
 .background {

@@ -1,6 +1,6 @@
 <div class="comments">
-  <h2>Comments:</h2>
   <% unless parent.comments.empty? %>
+    <h2>Comments:</h2>
     <div class="comment">
       <div class="body">
         <%= parent.comments.count>5 ? link_to(pluralize(parent.comments.count-5, 'more comment'),parent_path) : '' %>

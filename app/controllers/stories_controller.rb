@@ -18,7 +18,7 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-    @comments = @story.comments.order('created_at DESC').page(page).per_page(per_page)
+    @comments = @story.comments.page(page).per_page(per_page)
   end
 
   def create

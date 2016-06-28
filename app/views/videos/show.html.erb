@@ -9,5 +9,5 @@
   <%= content_tag :span, real_user(@video.user), class: 'user' %>
   <%= time_ago_in_words(@video.created_at) %> ago.
 </p>
-<div class="clip"><%= raw @video.html %></div>
-<%= render 'comments/index', parent: @video %>
+<div class="clip single_clip"><%= raw @video.html %></div>
+<%= render 'comments/index', parent: @video, parent_path: video_path(@video) %>

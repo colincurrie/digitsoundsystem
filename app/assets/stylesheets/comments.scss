@@ -2,6 +2,7 @@
 
 .comments {
   display: block;
+  margin: 0 0 1em 0;
   a, p {
     margin: 0.5em 0 0 0;
   }
@@ -24,5 +25,26 @@
   .user {
     float: left;
     color: $secondary-text;
+  }
+
+  .more-comments:hover {
+    background: $secondary-background;
+  }
+
+  .new_comment {
+    margin: 0;
+    width: 100%;
+    .add_btn {
+      min-width: 70px;
+      margin: 0;
+    }
+    .comment_field_holder {
+      margin: 0 4px 0 0;
+    }
+    .comment_field {
+      width: 100%;
+      padding: 2px;
+      //margin: 0 0 0 75px;
+    }
   }
 }

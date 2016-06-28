@@ -1,4 +1,5 @@
 @import 'vars';
+@import 'comments';
 
 .new_user, .edit_user {
   max-width: 300px;
@@ -89,21 +90,20 @@ label {
   }
 }
 
-#new_comment {
+// why is this duplicated from comments.scss??
+.new_comment {
+  margin: 0;
   width: 100%;
-  textarea {
-    width: 90%;
-    margin: 5px 0;
-    resize: vertical;
-    height: 2em;
-  }
-  textarea.story-comment {
-    //float: left;
-  }
-  input[type=submit] {
-    width: 68px;
+  .add_btn {
+    min-width: 70px;
     margin: 0;
-    font-size: 100%;
-    float: right;
+  }
+  .comment_field_holder {
+    margin: 0 4px 0 0;
+  }
+  .comment_field {
+    width: 100%;
+    padding: 2px;
+    //margin: 0 0 0 75px;
   }
 }

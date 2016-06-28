@@ -24,8 +24,8 @@ class CommentsController < ApplicationController
     if parent_key
       parent_class = parent_key.scan(/(.*)_id$/).flatten.first.capitalize.constantize
       parent = parent_class.find(params[parent_key])
-      #path = self.send(parent_key.gsub('_id', '_path'), parent)
-      path = self.send(parent_key.gsub('_id', 's_path'))
+      path = self.send(parent_key.gsub('_id', '_path'), parent)
+      #path = self.send(parent_key.gsub('_id', 's_path'))
     end
     [parent, path]
   end

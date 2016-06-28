@@ -2,7 +2,7 @@
   <% unless parent.comments.empty? %>
     <h2>Comments:</h2>
     <div class="comment">
-      <div class="body">
+      <div class="more-comments">
         <%= parent.comments.count>5 ? link_to(pluralize(parent.comments.count-5, 'more comment'),parent_path) : '' %>
       </div>
     </div>

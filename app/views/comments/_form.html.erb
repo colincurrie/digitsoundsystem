@@ -2,8 +2,16 @@
   <% if current_user %>
     <%= link_to 'Add A Comment', '#add_comment', class: 'add_comment', id: 'comments' %>
     <%= form_for([parent, parent.comments.build]) do |f| %>
-      <%= f.submit 'Add' %>
-      <%= f.text_area :content, placeholder: 'Comment' %>
+      <table class="comment_form">
+        <tr>
+          <td class="add_btn"><%= f.submit 'Add', class: 'add_btn' %></td>
+          <td class="comment_field">
+            <div class="comment_field_holder">
+              <%= f.text_area :content, placeholder: 'Comment' %>
+            </div>
+          </td>
+        </tr>
+      </table>
     <% end %>
   <% else %>
     <%= link_to 'Add A Comment', new_user_session_path %>

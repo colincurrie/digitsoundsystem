@@ -1,7 +1,5 @@
 class StoriesController < ApplicationController
 
-  DEFAULT_PER_PAGE = 10
-
   def index
     @title = 'News'
     @story ||= Story.new
@@ -60,13 +58,5 @@ class StoriesController < ApplicationController
 
   def stories
     Story.order('created_at DESC').page(page).per_page(per_page)
-  end
-
-  def page
-    params.fetch('page', 1)
-  end
-
-  def per_page
-    params.fetch('per_page', DEFAULT_PER_PAGE)
   end
 end

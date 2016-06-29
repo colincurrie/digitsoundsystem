@@ -28,6 +28,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @comments = @event.comments.page(page).per_page(per_page)
   end
 
   def index

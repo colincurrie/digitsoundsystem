@@ -5,3 +5,8 @@
   </span>
 <% end %>
 <%= render 'event', event: @event %>
+
+<h2>Comments:</h2>
+<div class="comments"><%= render @comments, parent: @event %></div>
+<%= render 'comments/form', parent: @event %>
+<%= will_paginate @comments %>

@@ -18,7 +18,8 @@ after "development:stories", "development:photos", "development:mixtapes",
   users = User.all.to_a
   100.times do
     options = { content: lorem.sample, user: users.sample }
-    targets.sample.all.to_a.sample.comments.create options
+    target = targets.sample
+    target.all.to_a.sample.comments.create options unless target.all.empty?
   end
   puts 'Added 100 Comments'
 end

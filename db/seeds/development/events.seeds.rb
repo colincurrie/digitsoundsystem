@@ -10,13 +10,16 @@ after :users do
         'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ' +
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore'
   ]
+  verbs = %w{Phat Massive Rocking Funky Amazing Aaaamaaazing Wikid Retro Boaring Huge Weird}
+  genres = %w{acid-house jungle garage house illegal ragga reggae electro dance hip-hop}
+  events = %w{party festival rave gig wedding bar-mitzvah party rave event party rave festival doo thing}
   venues = ['Albert Hall', 'Parliament Hill', 'Alma St', 'Trafalgar Sq', 'Water Rats']
   users = User.all.to_a
   num_events = 15
   num_events.times do |i|
-    start_at = Chronic.parse('next Saturday 8pm') + (2*i.weeks)
-    end_at =
-    Event.create title: "Event #{i+1} of #{num_events}", description: lorem.sample, user: users.sample,
+    title = "#{verbs.sample} #{genres.sample} #{events.sample}"
+    start_at = Chronic.parse('next Friday 8pm') + ([1,1,2].sample*i.weeks) + [0,0,0,1,1,1,2,2,3,4].sample.days
+    Event.create title: title, description: lorem.sample, user: users.sample,
                  venue: venues.sample, start_at: start_at, end_at: start_at + 5.hours
   end
   puts "Added #{num_events} Events"

@@ -9,13 +9,13 @@
     color: $primary-text;
   }
   .previous_page, .next_page, a, em {
-    background: $primary-color;
-    padding: 5px;
-    color: $secondary-background;
+    background: $secondary-color;
+    padding: 10px;
+    color: $primary-text;
   }
   .disabled, .disabled:hover {
-    background: darkred;
-    color: $primary-background;
+    background: $primary-color;
+    color: $primary-text;
   }
   a:hover, .next-page:hover {
     text-decoration: none;
@@ -23,5 +23,7 @@
   }
   em {
     text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
   }
 }

@@ -77,8 +77,8 @@ footer {
 }
 
 .background {
-  background-color: $primary-background;
   padding: 20px;
+  background: $primary-background url("bg_fade_dig_it.png") repeat-x;
 }
 
 .section {

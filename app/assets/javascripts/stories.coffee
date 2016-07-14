@@ -26,3 +26,23 @@ $(document).on 'page:change', ->
     form = this.parentElement.querySelector(".new_comment")
     console.log("debug")
     form.style.display = if form.style.display == 'none' then 'block' else 'none'
+
+  # initialise the image input selector
+  $(":file").filestyle {
+    buttonText: "Add Image",
+#    buttonBefore: true,
+    placeholder: 'Filename'
+  }
+
+  $('#story_image').on 'change', (event) ->
+    files = event.target.files
+    image = files[0]
+    reader = new FileReader
+    reader.onload = (file) ->
+      img = new Image
+      img.src = file.target.result
+      img.width = 200
+      img.height = 200
+      $('#preview').html img
+
+    reader.readAsDataURL image

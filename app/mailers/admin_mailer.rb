@@ -4,7 +4,7 @@ class AdminMailer < ApplicationMailer
 
   def new_user(user)
     @user = user
-    mail(to: 'digitsoundsystem@gmail.com', subject: 'We got a new user')
+    mail(to: 'digitsoundsystem@gmail.com', subject: 'We got a new user') unless Rails.env == 'development'
   end
 
   def new_comment(comment)
@@ -12,10 +12,10 @@ class AdminMailer < ApplicationMailer
     subject = comment.subject
     if subject.is_a? Photo
       @subject = "#{subject.class} #{subject.id}"
-    else
+    elsif subject.respond_to? :title
       @subject = "the #{subject.class} '#{subject.title}'"
     end
     @link = url_for(subject)
-    mail(to: 'digitsoundsystem@gmail.com', subject: 'Somebody left a comment')
+    mail(to: 'digitsoundsystem@gmail.com', subject: 'Somebody left a comment') unless Rails.env == 'development'
   end
 end

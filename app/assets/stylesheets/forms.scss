@@ -4,29 +4,18 @@
 .new_user, .edit_user {
   max-width: 300px;
   margin: 0 auto;
-  padding-bottom: 50px;
-}
-
-.edit_story {
-  width: 100%;
-  margin: 0 auto;
-  textarea {
-    height: 15em;
-    resize: vertical;
-  }
 }
 
 input[type=text], input[type=email], input[type=password], textarea, input[type=checkbox] {
   display: block;
-  alignment: left;
   width: 100%;
   background: $secondary-background;
   font-family: $code-font;
   font-size: 110%;
   color: $secondary-text;
-  padding: 0;
-  margin: 0 auto;
+  padding: 2px;
   border: 2px solid $primary-text;
+  margin: 5px auto;
 }
 
 input[type=submit] {
@@ -75,35 +64,5 @@ label {
 .js {
   #story_form, .new_comment {
     display: none;
-  }
-}
-
-#story_form {
-  input, textarea {
-    width: 100%;
-    margin: 5px auto;
-    font-size: 100%;
-  }
-  textarea {
-    resize: vertical;
-    height: 5em;
-  }
-}
-
-// why is this duplicated from comments.scss??
-.new_comment {
-  margin: 0;
-  width: 100%;
-  .add_btn {
-    min-width: 70px;
-    margin: 0;
-  }
-  .comment_field_holder {
-    margin: 0 4px 0 0;
-  }
-  .comment_field {
-    width: 100%;
-    padding: 2px;
-    //margin: 0 0 0 75px;
   }
 }

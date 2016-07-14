@@ -24,7 +24,7 @@
       color: $secondary-color;
     }
 
-    .body {
+    .story-body {
       margin-left: 75px;
       h1, h2, h3 {
         font-size: $normal-font;
@@ -35,6 +35,47 @@
 
   .story:hover {
     background: $secondary-background;
+  }
+}
+
+.story-image {
+  margin: 5px;
+  box-shadow: 2px 2px 3px 3px #bbb;
+}
+
+#story_form {
+  input[type=text], textarea {
+    width: 100%;
+    //margin: 5px auto;
+    font-size: 100%;
+  }
+  textarea {
+    resize: vertical;
+    height: 5em;
+  }
+  input[type=submit] {
+    width: auto;
+    margin: 5px auto;
+  }
+  .bootstrap-filestyle {
+    display: table;
+    width: 100%;
+    label.btn {
+      display: table-cell;
+      margin: 0;
+      float: right;
+      padding: 10px;
+      cursor: pointer;
+      background: $secondary-color;
+      text-align: center;
+      :hover {
+        color: $primary-background;
+      }
+    }
+    input.form-control {
+      //width: auto;
+      display: table-cell;
+    }
   }
 }
 

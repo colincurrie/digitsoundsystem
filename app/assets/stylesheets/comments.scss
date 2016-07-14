@@ -11,20 +11,16 @@
   }
   .comment {
     .user {
+      float: left;
       color: $secondary-text;
+    }
+    .comment-body {
+      margin: 0 0 0 75px;
+      min-height: 0;
     }
   }
   .comment:hover {
     background: $primary-background;
-  }
-
-  .body {
-    margin: 0 0 0 75px;
-  }
-
-  .user {
-    float: left;
-    color: $secondary-text;
   }
 
   .more-comments:hover {

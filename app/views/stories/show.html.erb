@@ -2,11 +2,17 @@
   <%= link_to 'Edit', edit_story_path(@story) %>
   <%= link_to 'Back to News', stories_path %>
 </div>
-<h1><%= @story.title %></h1>
+<div class="story">
+  <h1><%= @story.title %></h1>
+  <%= content_tag(:div, class: 'story-body', style: @story.image.exists? ? 'min-height: 300px' : '') do %>
+    <%= content_tag :div, image_tag(@story.image.url(:normal)), class: 'story-image', style: @story.id.odd? ? 'float: left' : 'float: right' %>
+    <p><%= @story.content %></p>
+  <% end %>
 
-<p><%= @story.content %></p>
-
-<h2>Comments:</h2>
-<div class="comments"><%= render @comments, parent: @story %></div>
-<%= render 'comments/form', parent: @story %>
-<%= will_paginate @comments %>
+  <h2>Comments:</h2>
+  <div class="comments">
+    <%= render @comments, parent: @story %>
+    <%= render 'comments/form', parent: @story %>
+    <%= will_paginate @comments %>
+  </div>
+</div>

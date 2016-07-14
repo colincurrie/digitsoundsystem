@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to :mixtape
   belongs_to :video
   belongs_to :event
+  belongs_to :tune
 
   validates_presence_of :content
 
@@ -15,6 +16,6 @@ class Comment < ActiveRecord::Base
   end
 
   def subject
-    story || photo || video || mixtape || event
+    story || photo || tune || video || mixtape || event
   end
 end

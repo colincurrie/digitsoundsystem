@@ -49,7 +49,7 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:title, :content).merge user: current_user
+    params.require(:story).permit(:title, :content, :image, :image_position).merge user: current_user
   end
 
   def admin?

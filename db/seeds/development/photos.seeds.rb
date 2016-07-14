@@ -3,6 +3,7 @@ after :users do
   images = Dir[ENV.fetch('SRC_PHOTOS','')].shuffle
   unless images.empty?
     num_photos = 50
+    puts "Adding #{num_photos} Photos..."
     users = User.all.to_a
     num_photos.times do |i|
       photo = Photo.new(description: "Photo #{i+1} of #{num_photos}", user: users.sample, image: File.new(images.pop))

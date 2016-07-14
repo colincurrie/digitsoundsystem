@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527000450) do
+ActiveRecord::Schema.define(version: 20160629203434) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -79,8 +79,13 @@ ActiveRecord::Schema.define(version: 20160527000450) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "image_position"
   end
 
   add_index "stories", ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"

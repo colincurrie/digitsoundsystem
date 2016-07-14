@@ -2,11 +2,19 @@
   <div class="date"><%= time_ago_in_words story.updated_at %> ago</div>
   <% if current_user.try(:admin?) %>
     <div class="actions">
+      <%= link_to 'Open', story_path(story) %>
       <%= link_to 'Edit', edit_story_path(story) %>
       <%= link_to 'Delete', story_path(story), method: :delete, data: {confirm: 'Are you sure?'} %>
     </div>
   <% end %>
   <div class="title"><%= story.title %></div>
-  <div class="body"><%= markdown(story.content) %></div>
+  <%= content_tag(:div, class: 'story-body', style: story.image.exists? ? 'min-height: 160px' : '') do %>
+    <% if story.image.exists? %>
+      <%= content_tag(:div, image_tag(story.image.url(:thumb)), class: 'story-image', style: story.id.odd? ? 'float: left' : 'float: right') %>
+    <% end %>
+    <div>
+      <%= content_tag(:div, markdown(story.content)) %>
+    </div>
+  <% end %>
   <%= render 'comments/index', parent: story, parent_path: story_path(story) %>
 </div>

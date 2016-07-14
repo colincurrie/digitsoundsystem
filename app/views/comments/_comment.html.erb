@@ -7,5 +7,5 @@
                     title: "#{time_ago_in_words(comment.created_at)} ago",
                     alt: "#{time_ago_in_words(comment.created_at)} ago" %>:
   </div>
-  <div class="body"><%= markdown(comment.content) %></div>
+  <div class="comment-body"><%= markdown(comment.content) %></div>
 </div>

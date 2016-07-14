@@ -17,4 +17,5 @@
 //= require fullcalendar
 //= require jquery-ui.custom.min
 //= require jquery.datetimepicker.full.min
+//= require bootstrap-filestyle.min
 //= require_tree .

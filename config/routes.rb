@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   resources :tunes, concerns: [:commentable, :scorable]
   resources :videos, concerns: [:commentable, :scorable]
 
+  # A specific route to delete the image for a story
+  delete '/stories/:id/image' => 'stories#remove_image', as: :remove_image
+
   # A single non-persistent contact for the form
   resource :contact, only: [:show, :create], controller: 'contact'
 

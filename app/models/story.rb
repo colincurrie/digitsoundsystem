@@ -13,12 +13,4 @@ class Story < ActiveRecord::Base
                     styles: {thumb: '450x150', normal: '900x300>'}
   validates_attachment :image,
                        :content_type => {:content_type => %w(image/jpeg image/png)}
-
-  def delete_image
-    @delete_image ||= false
-  end
-
-  def delete_image=(value)
-    @delete_image = !value.to_i.zero?
-  end
 end

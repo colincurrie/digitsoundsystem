@@ -28,11 +28,8 @@ $(document).on 'page:change', ->
     form.style.display = if form.style.display == 'none' then 'block' else 'none'
 
   # initialise the image input selector
-  $(":file").filestyle {
-    buttonText: "Add Image",
-#    buttonBefore: true,
-    placeholder: 'Filename'
-  }
+  btn_text = if $('#preview img').length > 0 then 'Update Image' else 'Add Image'
+  $(":file").filestyle { badge: "false", buttonText: btn_text }
 
   $('#story_image').on 'change', (event) ->
     files = event.target.files
@@ -41,8 +38,7 @@ $(document).on 'page:change', ->
     reader.onload = (file) ->
       img = new Image
       img.src = file.target.result
-      img.width = 200
-      img.height = 200
+      img.height = 300
       $('#preview').html img
 
     reader.readAsDataURL image

@@ -46,6 +46,11 @@ class StoriesController < ApplicationController
     redirect_to stories_path
   end
 
+  def remove_image
+    Story.find(params[:id]).image.destroy
+    redirect_to request.referer
+  end
+
   private
 
   def story_params

@@ -1,9 +1,20 @@
+<div class="actions">
+  <%= link_to 'Cancel', story_path(@story) %>
+  <%= link_to 'Delete', story_path(@story), method: :delete, data: {confirm: 'Are you sure you want to delete this story?'} %>
+</div>
 <h1 id="edit_story">Edit A Story</h1>
 <%= link_to 'Write a new story', '#new_story', class: 'new_story' %>
 <%= form_for @story, html: {id: 'story_form', class: 'story_form', multipart: true} do |f| %>
   <%= f.text_field :title, placeholder: 'Title' %>
   <%= f.text_area :content, placeholder: 'Content' %>
-  <%= f.file_field :image %>
-  <div id="preview"></div>
+  <div>
+    <div class="actions"><%= f.file_field :image %></div>
+    <% if @story.image.exists? %>
+      <div class="actions">
+        <%= link_to 'Remove Image', remove_image_path, method: :delete, data: {confirm: 'Are you sure you want to remove the image?'} %>
+      </div>
+    <% end %>
+  </div>
+  <div id="preview"><%= content_tag(:img, nil, src: @story.image.url(:normal)) if @story.image.exists? %></div>
   <%= f.submit %>
 <% end %>

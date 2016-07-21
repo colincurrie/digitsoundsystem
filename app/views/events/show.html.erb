@@ -1,9 +1,10 @@
-<%= link_to 'Back to the Calendar', calendar_path %>
-<% if current_user.try(:admin?) %>
-  <span class="actions">
+<span class="actions">
+  <%= link_to 'Back', calendar_path %>
+  <% if current_user.try(:admin?) %>
     <%= link_to 'Edit', edit_event_path(@event) %>
-  </span>
-<% end %>
+    <%= link_to 'Delete', event_path(@event), method: :delete, data: {confirm: 'Are you sure?'} %>
+  <% end %>
+</span>
 <%= render 'event', event: @event %>
 
 <h2>Comments:</h2>

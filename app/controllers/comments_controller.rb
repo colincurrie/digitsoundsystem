@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     parent, path = parent_and_path
     @comment = parent.comments.create(comment_params) if parent
-    redirect_to path
+    redirect_to request.referer
   end
 
   def destroy

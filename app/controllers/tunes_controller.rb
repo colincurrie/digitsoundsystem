@@ -13,10 +13,12 @@ class TunesController < ApplicationController
   end
 
   def new
+    authenticate
     @tune = Tune.new
   end
 
   def edit
+    authenticate
     @tune = Tune.find(params[:id])
   end
 
@@ -26,6 +28,7 @@ class TunesController < ApplicationController
   end
 
   def create
+    authenticate
     @tune = Tune.new(tune_params)
     if @tune.save
       redirect_to tunes_path
@@ -35,10 +38,10 @@ class TunesController < ApplicationController
   end
 
   def update
-    properties = tune_params
     @tune = Tune.find(params[:id])
+    authenticate tune_path(@tune)
 
-    if @tune.update(properties)
+    if @tune.update(tune_params)
       redirect_to tune_path(@tune)
     else
       render 'edit'
@@ -46,22 +49,29 @@ class TunesController < ApplicationController
   end
 
   def destroy
+    authenticate
     @tune = Tune.find(params[:id])
     @tune.destroy
     redirect_to tunes_path
   end
 
   def move_up
+    authenticate
     Tune.find(params[:id]).move_up
     redirect_to tunes_path
   end
 
   def move_down
+    authenticate
     Tune.find(params[:id]).move_down
     redirect_to tunes_path
   end
 
   private
+
+  def authenticate(path=nil)
+    redirect_to(path||tunes_path) unless current_user.try(:admin?)
+  end
 
   def tune_params
     tune_params = params.require(:tune).permit(:artist, :title, :url)

@@ -1,10 +1,12 @@
 class EventsController < ApplicationController
 
   def new
+    redirect_to(calendar_path) unless current_user.try(:admin?)
     @event = Event.new
   end
 
   def create
+    redirect_to(calendar_path) unless current_user.try(:admin?)
     @event = Event.create(event_params)
     if @event.save
       redirect_to events_path

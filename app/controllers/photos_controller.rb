@@ -62,7 +62,7 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
-    redirect_to photo_path(@photo) unless admin?
+    redirect_to photo_path(@photo) unless current_user.try(:admin?)
   end
 
   def show
@@ -94,6 +94,11 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @photo.destroy
     redirect_to photos_path
+  end
+
+  def remove_image
+    Photo.find(params[:id]).image.destroy
+    redirect_to request.referer
   end
 
   private

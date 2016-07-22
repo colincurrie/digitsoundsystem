@@ -17,4 +17,25 @@
   }
 }
 
+.bootstrap-filestyle {
+  display: table;
+  width: 100%;
+  label.btn {
+    text-align: right;
+    margin: 0 0 0 0.3em;
+    cursor: pointer;
+    color: $primary-color;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+  input.form-control {
+    display: none; // the badge: false setting doesn't seem to work?!?
+  }
+}
+
+.photo-image, #preview img {
+  margin: 5px;
+  box-shadow: 2px 2px 3px 3px #bbb;
+}
 

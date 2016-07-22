@@ -2,8 +2,8 @@
 
 <% if current_user.try :admin? %>
   <div class="actions">
-    <%= link_to 'Edit', edit_photo_path(@photo) %>
     <%= link_to 'Back', photos_path %>
+    <%= link_to 'Edit', edit_photo_path(@photo) %>
     <%= link_to 'Delete', @photo, confirm: 'Are you sure?', method: :delete %>
   </div>
 <% end %>

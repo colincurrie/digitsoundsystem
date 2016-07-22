@@ -1,6 +1,13 @@
+<% if @photo.image.exists? %>
+  <div class="actions">
+    <%= link_to 'Remove Photo', remove_photo_image_path, method: :delete, data: {confirm: 'Are you sure you want to remove the image?'} %>
+  </div>
+<% end %>
+
 <%= form_for @photo do |f| %>
   <%= f.label :image %><br>
   <%= f.file_field :image %>
+  <div id="preview"><%= content_tag(:img, nil, src: @photo.image.url(:original), class: 'photo-image') if @photo.image.exists? %></div>
 
   <%= f.label :description %><br>
   <%= f.text_area :description %>

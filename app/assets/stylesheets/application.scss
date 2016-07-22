@@ -100,6 +100,10 @@ footer {
   max-width: 900px;
 }
 
+.alert {
+  opacity: 0;
+}
+
 h1 {
   font-size: $title-font;
   color: $secondary-color;

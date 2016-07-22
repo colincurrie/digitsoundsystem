@@ -1,8 +1,10 @@
-<div class="clip"><%= raw video.html %></div>
-<div class="title"><%= video.title %></div>
-<div class="info">Added by
-  <%= content_tag :span, real_user(video.user), class: 'user' %>
-  <%= time_ago_in_words(video.created_at) %> ago.
-</div>
-<div class="description"><%= video.description %></div>
-<%= render 'comments/index', parent: video, parent_path: video_path(video) %>
+<%= content_tag :div, nil, class: 'video', id: "video_#{video.id}" do %>
+  <div class="clip"><%= raw video.html %></div>
+  <div class="title"><%= video.title %></div>
+  <div class="info">Added by
+    <%= content_tag :span, real_user(video.user), class: 'user' %>
+    <%= time_ago_in_words(video.created_at) %> ago.
+  </div>
+  <div class="description"><%= video.description %></div>
+  <%= render 'comments/index', parent: video, parent_path: video_path(video) %>
+<% end %>

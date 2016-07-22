@@ -22,10 +22,6 @@ $(document).on 'page:change', ->
     else
       $("#story_form").show()
     false
-  $(".add_comment").click ->
-    form = this.parentElement.querySelector(".new_comment")
-    console.log("debug")
-    form.style.display = if form.style.display == 'none' then 'block' else 'none'
 
   # initialise the image input selector
   btn_text = if $('#preview img').length > 0 then 'Update Image' else 'Add Image'

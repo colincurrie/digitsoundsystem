@@ -22,6 +22,7 @@ class TunesController < ApplicationController
 
   def show
     @tune = Tune.find(params[:id])
+    @comments = @tune.comments.page(page).per_page(per_page)
   end
 
   def create

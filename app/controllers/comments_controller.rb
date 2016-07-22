@@ -2,14 +2,20 @@ class CommentsController < ApplicationController
 
   def create
     parent, path = parent_and_path
-    @comment = parent.comments.create(comment_params) if parent
-    redirect_to request.referer
+    if parent
+      @comment = parent.comments.create(comment_params)
+      parent_class = parent.class.to_s.downcase
+      url_params = request.referrer =~ /#{parent_class.pluralize}\/\d+$/ ? '' : "##{parent_class}_#{parent.id}"
+    else
+      url_params = ''
+    end
+    redirect_to request.referer + url_params
   end
 
   def destroy
     parent, path = parent_and_path
     @comment = parent.comments.find(params[:id])
-    @comment.destroy
+    @comment.destroy if @comment.user == current_user
     redirect_to path
   end
 

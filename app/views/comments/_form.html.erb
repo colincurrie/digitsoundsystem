@@ -1,6 +1,6 @@
 <div class="comment_form">
   <% if current_user %>
-    <%= link_to 'Add A Comment', '#add_comment', class: 'add_comment', id: 'comments' %>
+    <%= link_to 'Add A Comment', "#add_comment", class: 'add_comment', id: 'comments' %>
     <%= form_for([parent, parent.comments.build]) do |f| %>
       <table class="comment_form">
         <tr>

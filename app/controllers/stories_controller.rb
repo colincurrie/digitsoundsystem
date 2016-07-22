@@ -11,6 +11,7 @@ class StoriesController < ApplicationController
   end
 
   def edit
+    redirect_to stories_path unless admin?
     @story = Story.find(params[:id])
   end
 

@@ -16,6 +16,7 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
+    @comments = @video.comments.page(page).per_page(per_page)
   end
 
   def create

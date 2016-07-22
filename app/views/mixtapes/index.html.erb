@@ -8,20 +8,17 @@
 
 <ul class="mixtapes">
   <% @mixtapes.each do |mixtape| %>
-    <li class="mix">
-      <h2><%= mixtape.title %></h2>
-      <div class="actions">
-        <% if current_user.try :admin? %>
-          <%= link_to 'Open', mixtape_path(mixtape) %>
-          <%= link_to 'Edit', edit_mixtape_path(mixtape) %>
-          <%= link_to 'Delete', mixtape_path(mixtape), :confirm => 'Are you sure?', :method => :delete %>
-          <br>
-          <%= link_to('Move Up', move_up_mixtape_path(mixtape)) unless mixtape.best? %>
-          <%= link_to('Move Down', move_down_mixtape_path(mixtape)) unless mixtape.worst? %>
-        <% end %>
-      </div>
-      <%= render 'mixtape', mixtape: mixtape %>
-    </li>
+    <div class="actions">
+      <% if current_user.try :admin? %>
+        <%= link_to 'Open', mixtape_path(mixtape) %>
+        <%= link_to 'Edit', edit_mixtape_path(mixtape) %>
+        <%= link_to 'Delete', mixtape_path(mixtape), :confirm => 'Are you sure?', :method => :delete %>
+        <br>
+        <%= link_to('Move Up', move_up_mixtape_path(mixtape)) unless mixtape.best? %>
+        <%= link_to('Move Down', move_down_mixtape_path(mixtape)) unless mixtape.worst? %>
+      <% end %>
+    </div>
+    <li><%= render 'mixtape', mixtape: mixtape %></li>
   <% end %>
 </ul>
 <%= will_paginate @mixtapes, style: 'background: $primary-color; color: $secondary-text' %>

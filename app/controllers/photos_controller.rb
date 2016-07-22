@@ -62,10 +62,12 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
+    redirect_to photo_path(@photo) unless admin?
   end
 
   def show
     @photo = Photo.find(params[:id])
+    @comments = @photo.comments.page(page).per_page(per_page)
   end
 
   def create

@@ -12,6 +12,7 @@ class MixtapesController < ApplicationController
 
   def edit
     @mixtape = Mixtape.find(params[:id])
+
     @action = 'edit'
   end
 

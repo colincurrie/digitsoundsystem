@@ -14,10 +14,12 @@ class EventsController < ApplicationController
   end
 
   def edit
+    redirect_to(calendar_path) unless current_user.try(:admin?)
     @event = Event.find(params[:id])
   end
 
   def update
+    redirect_to(calendar_path) unless current_user.try(:admin?)
     @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to calendar_path
@@ -40,8 +42,10 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
+    if admin?
+      @event = Event.find(params[:id])
+      @event.destroy
+    end
     redirect_to calendar_path
   end
 

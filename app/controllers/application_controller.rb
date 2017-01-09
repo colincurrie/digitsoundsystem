@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   DEFAULT_PER_PAGE = 10
 
   def store_location
-    # store last url as long as it isn't a /users path
-    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
+    # store last url as long as it isn't a /users path or json data
+    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users|.json/
   end
 
   def after_sign_in_path_for(resource)

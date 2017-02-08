@@ -44,7 +44,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    if admin?
+    if current_user.try(:admin?)
       @event = Event.find(params[:id])
       @event.destroy
     end

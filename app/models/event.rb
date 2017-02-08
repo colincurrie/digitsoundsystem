@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
         title: self.title,
         user_name: self.user.name,
         start: start_at.rfc822,
-        end: end_at.rfc822,
+        end: end_at ? end_at.rfc822 : (start_at+1.day).midnight.rfc822,
         allDay: false,
         url: Rails.application.routes.url_helpers.event_path(self.id),
         venue: self.venue,

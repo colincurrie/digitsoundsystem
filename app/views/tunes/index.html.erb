@@ -12,7 +12,6 @@ though Soundcloud or youTube.</p>
 <ol class="tunes">
   <% @tunes.each do |tune| %>
     <li class="tune">
-      <div class="position" id="position_<%= tune.position %>"></div>
       <div class="clip"><%= raw tune.html %></div>
       <div class="title"><%= tune.title %></div>
       <div class="artist">by <%= tune.artist %></div>

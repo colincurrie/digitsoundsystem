@@ -17,7 +17,12 @@ class MixtapesController < ApplicationController
   end
 
   def show
-    @mixtape = Mixtape.find(params[:id])
+    if params[:id].to_i > 0
+      @mixtape = Mixtape.find(params[:id])
+    else
+      @mixtape = Mixtape.all.select {|m| m.title.downcase.gsub(/[^a-zA-Z0-9]/, '_')==params['id']}.first
+    end
+    redirect_to mixtapes_path if @mixtape.nil?
   end
 
   def create

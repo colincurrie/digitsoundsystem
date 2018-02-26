@@ -241,6 +241,7 @@ DEPENDENCIES
   google_custom_search_api
   jbuilder (~> 2.0)
   jquery-rails
+  json (= 1.8.6)
   mixcloud
   paperclip
   passenger

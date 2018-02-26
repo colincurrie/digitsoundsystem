@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -24,19 +23,18 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.integer  "tune_id"
     t.integer  "video_id"
     t.integer  "event_id"
+    t.index ["event_id"], name: "index_comments_on_event_id"
+    t.index ["mixtape_id", "created_at"], name: "index_comments_on_mixtape_id_and_created_at"
+    t.index ["mixtape_id"], name: "index_comments_on_mixtape_id"
+    t.index ["photo_id", "created_at"], name: "index_comments_on_photo_id_and_created_at"
+    t.index ["photo_id"], name: "index_comments_on_photo_id"
+    t.index ["story_id", "created_at"], name: "index_comments_on_story_id_and_created_at"
+    t.index ["story_id"], name: "index_comments_on_story_id"
+    t.index ["tune_id"], name: "index_comments_on_tune_id"
+    t.index ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["video_id"], name: "index_comments_on_video_id"
   end
-
-  add_index "comments", ["event_id"], name: "index_comments_on_event_id"
-  add_index "comments", ["mixtape_id", "created_at"], name: "index_comments_on_mixtape_id_and_created_at"
-  add_index "comments", ["mixtape_id"], name: "index_comments_on_mixtape_id"
-  add_index "comments", ["photo_id", "created_at"], name: "index_comments_on_photo_id_and_created_at"
-  add_index "comments", ["photo_id"], name: "index_comments_on_photo_id"
-  add_index "comments", ["story_id", "created_at"], name: "index_comments_on_story_id_and_created_at"
-  add_index "comments", ["story_id"], name: "index_comments_on_story_id"
-  add_index "comments", ["tune_id"], name: "index_comments_on_tune_id"
-  add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-  add_index "comments", ["video_id"], name: "index_comments_on_video_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -59,9 +57,8 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "score"
+    t.index ["user_id"], name: "index_mixtapes_on_user_id"
   end
-
-  add_index "mixtapes", ["user_id"], name: "index_mixtapes_on_user_id"
 
   create_table "photos", force: :cascade do |t|
     t.string   "description"
@@ -86,10 +83,9 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_position"
+    t.index ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_stories_on_user_id"
   end
-
-  add_index "stories", ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
-  add_index "stories", ["user_id"], name: "index_stories_on_user_id"
 
   create_table "tunes", force: :cascade do |t|
     t.string   "url"
@@ -100,9 +96,8 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.integer  "user_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.index ["user_id"], name: "index_tunes_on_user_id"
   end
-
-  add_index "tunes", ["user_id"], name: "index_tunes_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -122,10 +117,9 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.text     "bio",                    default: ""
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "videos", force: :cascade do |t|
     t.string   "title"
@@ -136,9 +130,8 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.integer  "user_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.index ["order"], name: "index_videos_on_order"
+    t.index ["user_id"], name: "index_videos_on_user_id"
   end
-
-  add_index "videos", ["order"], name: "index_videos_on_order"
-  add_index "videos", ["user_id"], name: "index_videos_on_user_id"
 
 end

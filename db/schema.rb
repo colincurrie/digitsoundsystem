@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20160629203434) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -23,17 +26,17 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.integer  "tune_id"
     t.integer  "video_id"
     t.integer  "event_id"
-    t.index ["event_id"], name: "index_comments_on_event_id"
-    t.index ["mixtape_id", "created_at"], name: "index_comments_on_mixtape_id_and_created_at"
-    t.index ["mixtape_id"], name: "index_comments_on_mixtape_id"
-    t.index ["photo_id", "created_at"], name: "index_comments_on_photo_id_and_created_at"
-    t.index ["photo_id"], name: "index_comments_on_photo_id"
-    t.index ["story_id", "created_at"], name: "index_comments_on_story_id_and_created_at"
-    t.index ["story_id"], name: "index_comments_on_story_id"
-    t.index ["tune_id"], name: "index_comments_on_tune_id"
-    t.index ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-    t.index ["video_id"], name: "index_comments_on_video_id"
+    t.index ["event_id"], name: "index_comments_on_event_id", using: :btree
+    t.index ["mixtape_id", "created_at"], name: "index_comments_on_mixtape_id_and_created_at", using: :btree
+    t.index ["mixtape_id"], name: "index_comments_on_mixtape_id", using: :btree
+    t.index ["photo_id", "created_at"], name: "index_comments_on_photo_id_and_created_at", using: :btree
+    t.index ["photo_id"], name: "index_comments_on_photo_id", using: :btree
+    t.index ["story_id", "created_at"], name: "index_comments_on_story_id_and_created_at", using: :btree
+    t.index ["story_id"], name: "index_comments_on_story_id", using: :btree
+    t.index ["tune_id"], name: "index_comments_on_tune_id", using: :btree
+    t.index ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+    t.index ["video_id"], name: "index_comments_on_video_id", using: :btree
   end
 
   create_table "events", force: :cascade do |t|
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "score"
-    t.index ["user_id"], name: "index_mixtapes_on_user_id"
+    t.index ["user_id"], name: "index_mixtapes_on_user_id", using: :btree
   end
 
   create_table "photos", force: :cascade do |t|
@@ -83,8 +86,8 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_position"
-    t.index ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_stories_on_user_id"
+    t.index ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at", using: :btree
+    t.index ["user_id"], name: "index_stories_on_user_id", using: :btree
   end
 
   create_table "tunes", force: :cascade do |t|
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.integer  "user_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.index ["user_id"], name: "index_tunes_on_user_id"
+    t.index ["user_id"], name: "index_tunes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -117,8 +120,8 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.text     "bio",                    default: ""
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "videos", force: :cascade do |t|
@@ -130,8 +133,18 @@ ActiveRecord::Schema.define(version: 20160629203434) do
     t.integer  "user_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.index ["order"], name: "index_videos_on_order"
-    t.index ["user_id"], name: "index_videos_on_user_id"
+    t.index ["order"], name: "index_videos_on_order", using: :btree
+    t.index ["user_id"], name: "index_videos_on_user_id", using: :btree
   end
 
+  add_foreign_key "comments", "events"
+  add_foreign_key "comments", "mixtapes"
+  add_foreign_key "comments", "photos"
+  add_foreign_key "comments", "stories"
+  add_foreign_key "comments", "users"
+  add_foreign_key "comments", "videos"
+  add_foreign_key "mixtapes", "users"
+  add_foreign_key "stories", "users"
+  add_foreign_key "tunes", "users"
+  add_foreign_key "videos", "users"
 end

@@ -70,7 +70,14 @@ gem 'chronic'
 gem 'google_custom_search_api'
 
 # Save the planet
-gem 'dotenv'
+gem 'dotenv-rails', groups: [:development, :test]
+
+# Amazon file storage for paperclip
+gem 'aws-sdk', '~> 2.3'
+
+# debugging
+gem 'pry'
+gem 'pry-nav'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

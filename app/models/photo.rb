@@ -7,8 +7,6 @@ class Photo < ActiveRecord::Base
   before_create :initialise_score
 
   has_attached_file :image,
-                url: '/gallery/:id/:style/:basename.:extension',
-                path: ':rails_root/public/gallery/:id/:style/:basename.:extension',
                 styles: {
                   small: '150x150#',
                   landscape: '300x150#',

@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require moment
 //= require moment.min
 //= require jquery
 //= require jquery_ujs
@@ -19,3 +20,5 @@
 //= require jquery.datetimepicker.full.min
 //= require bootstrap-filestyle.min
 //= require_tree .
+
+$('#calendar').fullCalendar({});

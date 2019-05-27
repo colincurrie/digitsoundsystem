@@ -42,13 +42,19 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (7.1.4)
     aws-eventstream (1.0.3)
-    aws-sdk (2.11.275)
-      aws-sdk-resources (= 2.11.275)
-    aws-sdk-core (2.11.275)
-      aws-sigv4 (~> 1.0)
+    aws-partitions (1.167.0)
+    aws-sdk-core (3.53.1)
+      aws-eventstream (~> 1.0, >= 1.0.2)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.275)
-      aws-sdk-core (= 2.11.275)
+    aws-sdk-kms (1.21.0)
+      aws-sdk-core (~> 3, >= 3.53.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.40.0)
+      aws-sdk-core (~> 3, >= 3.53.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.0)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.12)
@@ -254,7 +260,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk (~> 2.3)
+  aws-sdk-s3
   byebug
   chronic
   coffee-rails (~> 4.1.0)
@@ -266,6 +272,7 @@ DEPENDENCIES
   jquery-rails
   json (= 1.8.6)
   mixcloud
+  momentjs-rails
   paperclip
   passenger
   pg (= 0.20.0)

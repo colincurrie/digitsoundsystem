@@ -278,7 +278,7 @@ DEPENDENCIES
   pg (= 0.20.0)
   pry
   pry-nav
-  rails (~> 5.0)
+  rails
   redcarpet
   rest-client
   sass-rails (~> 5.0)

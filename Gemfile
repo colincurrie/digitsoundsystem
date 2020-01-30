@@ -52,6 +52,9 @@ gem 'redcarpet'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
+gem 'webpacker'
+gem 'react-rails'
+
 # Pagination
 gem 'will_paginate', '~> 3.0.6'
 

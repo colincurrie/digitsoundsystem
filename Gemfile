@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'json', '1.8.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0'
+gem 'rails'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'pg', '0.20.0'
@@ -50,6 +50,7 @@ gem 'redcarpet'
 
 # FullCalendar event planner
 gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 # Pagination
 gem 'will_paginate', '~> 3.0.6'
@@ -73,7 +74,7 @@ gem 'google_custom_search_api'
 gem 'dotenv-rails', groups: [:development, :test]
 
 # Amazon file storage for paperclip
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk-s3'
 
 # debugging
 gem 'pry'

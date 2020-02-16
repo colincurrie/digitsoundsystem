@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+<h1>Weekly Updates</h1>
+
+<% unless @stories.empty? %><p>There have been <%= @stories.count %> new stories this week</p><% end %>
+<% unless @tunes.empty? %><p>There have been <%= @tunes.count %> new tunes this week</p><% end %>
+<% unless @mixtapes.empty? %><p>There have been <%= @mixtapes.count %> new mixtapes this week</p><% end %>
+<% unless @videos.empty? %><p>There have been <%= @videos.count %> new videos this week</p><% end %>
+<% unless @photos.empty? %><p>There have been <%= @photos.count %> new photos this week</p><% end %>
+<% unless @comments.empty? %><p>There have been <%= @comments.count %> new stories this week</p><% end %>
+
+<p>
+  Cheers,<br>
+  Doug Out (Your faithful website bot)
+</p>
+
+</body>
+</html>

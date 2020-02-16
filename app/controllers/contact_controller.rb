@@ -8,9 +8,14 @@ class ContactController < ApplicationController
   def create
     @contact = Contact.new contact_params
     if @contact.valid?
-      BookingMailer.booking_request(contact_params).deliver_now
-      flash[:notice] = 'Thanks for your request. We will be in touch as soon as possible.'
-      redirect_to root_path
+      if contact_params[:name] =~ /https?:\/\//
+        flash[:notice] = 'That seems like spam. Please don\'t include links in your name'
+        redirect_to contact_path
+      else
+        BookingMailer.booking_request(contact_params).deliver_now
+        flash[:notice] = 'Thanks for your request. We will be in touch as soon as possible.'
+        redirect_to root_path
+      end
     else
       render 'show'
     end

@@ -1,9 +1,0 @@
-<%= content_tag(:div, nil, class: 'mix', id: "mixtape_#{mixtape.id}") do %>
-  <h2><%= mixtape.title %></h2>
-  <% if mixtape.html %>
-    <%= raw mixtape.html %>
-  <% else %>
-    <%= mixtape.description %>
-  <% end %>
-  <%= render 'comments/index', parent: mixtape, parent_path: mixtape_path(mixtape) %>
-<% end %>

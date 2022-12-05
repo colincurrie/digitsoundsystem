@@ -1,8 +1,0 @@
-<h1>News</h1>
-<%= render 'form' %>
-<ul class="news">
-  <% @stories.each do |story| %>
-    <li><%= render 'story', story: story %></li>
-  <% end %>
-</ul>
-<%= will_paginate @stories, style: 'background: $primary-color; color: $secondary-text' %>

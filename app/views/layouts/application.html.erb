@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dig It Sound System <%= "| #{@title}" if @title %></title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'fullcalendar', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<%= image_tag 'logo.png', alt: 'Dig It Sound System', style: 'display: none' %>
-<%= render 'header' %>
-<div class="background">
-  <div class="section">
-    <%= content_tag(:p, notice || '', class: 'alert alert-success') %>
-    <%= content_tag(:p, alert || '', class: 'alert alert-danger') %>
+  <head>
+    <title>Digitsoundsystem</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
     <%= yield %>
-  </div>
-</div>
-<%= render 'footer' %>
-</body>
+  </body>
 </html>

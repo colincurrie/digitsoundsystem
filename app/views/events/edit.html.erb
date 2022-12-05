@@ -1,8 +1,0 @@
-<% if current_user.try(:admin?) %>
-  <span class="actions">
-    <%= link_to 'Cancel', event_path(@event) %>
-    <%= link_to 'Delete', @event, :confirm => 'Are you sure?', :method => :delete %>
-  </span>
-<% end %>
-<h1>Edit an Event</h1>
-<%= render 'form' %>

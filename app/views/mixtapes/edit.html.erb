@@ -1,8 +1,0 @@
-<% if current_user.try :admin? %>
-  <span class="actions">
-    <%= link_to 'Cancel', mixtape_path(@mixtape) %>
-    <%= link_to 'Delete', @mixtape, :confirm => 'Are you sure?', :method => :delete %>
-  </span>
-<% end %>
-<h1>Edit A Mixtape</h1>
-<%= render 'form', mixtape: @mixtape %>

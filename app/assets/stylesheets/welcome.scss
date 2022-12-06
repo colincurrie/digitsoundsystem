@@ -1,0 +1,27 @@
+body {
+
+  display: grid;
+  justify-content: center;
+
+  h1 {
+    font-family: sans-serif, "Impact";
+  }
+
+  img {
+    grid-row: 1;
+    grid-column: 1;
+    width: 350px;
+  }
+
+  img.alt {
+    grid-row: 1;
+    grid-column: 1;
+    opacity: 0;
+    transition: opacity 1s;
+
+    &:hover {
+      opacity: 1;
+      transition: opacity 1s;
+    }
+  }
+}

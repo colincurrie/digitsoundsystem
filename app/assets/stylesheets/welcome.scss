@@ -17,11 +17,11 @@ body {
     grid-row: 1;
     grid-column: 1;
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity 5s;
 
     &:hover {
       opacity: 1;
-      transition: opacity 1s;
+      transition: opacity 5s;
     }
   }
 }

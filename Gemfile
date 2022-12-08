@@ -16,7 +16,7 @@ gem "mysql2"
 gem "puma", "~> 5.0"
 
 # User Authentication
-gem 'devise'
+gem 'devise', "~> 4.8"
 
 # Images for the Gallery
 gem 'paperclip'

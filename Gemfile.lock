@@ -251,7 +251,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  devise
+  devise (~> 4.8)
   importmap-rails
   jbuilder
   mysql2
